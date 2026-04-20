@@ -1,0 +1,34 @@
+node_modules/
+dist/
+build/
+.turbo/
+.cache/
+
+.env
+.env.*
+!.env.example
+!deploy/env.example
+
+data/
+debug/
+logs/
+output/
+tmp/
+.playwright-cli/
+*.log
+
+.DS_Store
+
+# Browser automation runtime state
+.browser-profile/
+.browser-profile-*/
+browser-profile/
+
+# Local skill/plugin worktrees
+merchant-growth-advisor/
+store-marketing-daily-brief/
+
+# Local database/runtime files
+*.sqlite
+*.sqlite3
+*.db

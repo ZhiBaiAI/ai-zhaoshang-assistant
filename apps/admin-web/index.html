@@ -1,0 +1,1518 @@
+<!doctype html>
+<html class="light" lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AI 招商接待管理台</title>
+  <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+  <link href="https://fonts.googleapis.com" rel="preconnect">
+  <link crossorigin href="https://fonts.gstatic.com" rel="preconnect">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet">
+  <script id="tailwind-config">
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          colors: {
+            'error-container': '#ffdad6',
+            'surface-container-highest': '#e1e3e4',
+            'inverse-surface': '#2e3132',
+            'on-secondary-fixed-variant': '#38485a',
+            'on-error-container': '#93000a',
+            'on-surface-variant': '#414753',
+            surface: '#f7f9fb',
+            primary: '#0052ae',
+            'surface-container-lowest': '#ffffff',
+            'tertiary-fixed': '#ffdbce',
+            'tertiary-container': '#7d452e',
+            'on-tertiary-fixed': '#370e00',
+            'secondary-fixed': '#d7e2ff',
+            'surface-bright': '#f7f9fb',
+            'surface-dim': '#d8dadc',
+            'on-background': '#191c1d',
+            'inverse-on-surface': '#eff1f2',
+            'on-error': '#ffffff',
+            'surface-container-low': '#f2f4f6',
+            'on-primary-container': '#edf1ff',
+            'on-tertiary-fixed-variant': '#6d3822',
+            'primary-fixed-dim': '#acc7ff',
+            'primary-fixed': '#d7e2ff',
+            'secondary-container': '#b5ccff',
+            'secondary-fixed-dim': '#b0c7f9',
+            'on-primary-fixed': '#001a40',
+            'primary-container': '#006adc',
+            'surface-tint': '#005bbf',
+            'outline-variant': '#c1c6d6',
+            'on-secondary-container': '#3f5681',
+            'on-tertiary-container': '#ffb89c',
+            secondary: '#485e8a',
+            'on-primary-fixed-variant': '#004492',
+            'on-tertiary': '#ffffff',
+            'on-primary': '#ffffff',
+            error: '#ba1a1a',
+            'tertiary-fixed-dim': '#ffb599',
+            tertiary: '#612f19',
+            'inverse-primary': '#acc7ff',
+            'surface-container-high': '#e6e8e9',
+            'on-secondary': '#ffffff',
+            'surface-container': '#eceef0',
+            'surface-variant': '#e0e3e5',
+            outline: '#727785',
+            background: '#f7f9fb',
+            'on-secondary-fixed': '#001a40',
+            'on-surface': '#191c1d'
+          },
+          borderRadius: {
+            DEFAULT: '0.25rem',
+            lg: '0.5rem',
+            xl: '0.75rem',
+            full: '9999px'
+          },
+          fontFamily: {
+            headline: ['Manrope'],
+            body: ['Inter'],
+            label: ['Inter']
+          }
+        }
+      }
+    };
+  </script>
+  <style>
+    body {
+      font-family: Inter, "PingFang SC", "Microsoft YaHei", sans-serif;
+      background: #f7f9fb;
+      color: #191c1d;
+      margin: 0;
+      min-width: 320px;
+      letter-spacing: 0.02em;
+      line-height: 1.6;
+    }
+
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6,
+    .font-headline {
+      font-family: Manrope, Inter, "PingFang SC", "Microsoft YaHei", sans-serif;
+      letter-spacing: 0;
+    }
+
+    button,
+    input,
+    select,
+    textarea {
+      font: inherit;
+    }
+
+    button {
+      cursor: pointer;
+    }
+
+    button:disabled {
+      cursor: not-allowed;
+      opacity: 0.55;
+    }
+
+    ::-webkit-scrollbar {
+      width: 6px;
+      height: 6px;
+    }
+
+    ::-webkit-scrollbar-track {
+      background: transparent;
+    }
+
+    ::-webkit-scrollbar-thumb {
+      background: #e1e3e4;
+      border-radius: 10px;
+    }
+
+    .ambient-shadow {
+      box-shadow: 0 20px 40px rgba(25, 28, 29, 0.06);
+    }
+
+    .ghost-border {
+      border: 1px solid rgba(31, 105, 99, 0.1);
+    }
+
+    .nav-link {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      padding: 0.75rem 1rem;
+      border-radius: 0.75rem;
+      color: #475569;
+      font-weight: 600;
+      font-size: 0.875rem;
+      transition: all 0.2s ease;
+    }
+
+    .nav-link:hover,
+    .nav-link.active {
+      color: #006adc;
+      background: #ffffff;
+      box-shadow: 0 1px 3px rgba(15, 23, 42, 0.06);
+    }
+
+    .nav-link.active {
+      border-right: 0;
+      font-weight: 700;
+    }
+
+    .field-label {
+      display: grid;
+      gap: 0.35rem;
+      color: #414753;
+      font-size: 0.75rem;
+      font-weight: 700;
+      text-transform: uppercase;
+    }
+
+    .field-input {
+      width: 100%;
+      min-height: 2.5rem;
+      border: 0;
+      border-radius: 0.5rem;
+      background: #f2f4f6;
+      color: #191c1d;
+      padding: 0.55rem 0.75rem;
+      font-size: 0.875rem;
+      font-weight: 600;
+    }
+
+    .field-input:focus {
+      outline: none;
+      box-shadow: 0 0 0 3px rgba(0, 106, 220, 0.18);
+      background: #ffffff;
+    }
+
+    .primary-btn,
+    button.primary-btn {
+      min-height: 2.5rem;
+      border: 0;
+      border-radius: 0.5rem;
+      background: #006adc;
+      color: #ffffff;
+      padding: 0.55rem 1rem;
+      font-size: 0.8125rem;
+      font-weight: 800;
+      box-shadow: 0 4px 12px rgba(0, 106, 220, 0.15);
+      white-space: nowrap;
+    }
+
+    .secondary-btn,
+    button.secondary,
+    button.secondary-btn {
+      min-height: 2.5rem;
+      border: 0;
+      border-radius: 0.5rem;
+      background: #ffffff;
+      color: #0052ae;
+      border: 1px solid rgba(193, 198, 214, 0.35);
+      padding: 0.55rem 1rem;
+      font-size: 0.8125rem;
+      font-weight: 800;
+      white-space: nowrap;
+    }
+
+    button.warning {
+      min-height: 2.5rem;
+      border: 0;
+      border-radius: 0.5rem;
+      background: #ba4b01;
+      color: #ffffff;
+      padding: 0.55rem 1rem;
+      font-size: 0.8125rem;
+      font-weight: 800;
+      white-space: nowrap;
+    }
+
+    .section-panel {
+      scroll-margin-top: 1rem;
+    }
+
+    .section-panel:not(.active-section) {
+      display: none !important;
+    }
+
+    .metric {
+      min-height: 9rem;
+      border-radius: 0.75rem;
+      padding: 1.5rem;
+      background: #ffffff;
+      box-shadow: 0 18px 36px rgba(15, 23, 42, 0.04);
+      position: relative;
+      overflow: hidden;
+      display: grid;
+      align-content: space-between;
+      gap: 1rem;
+    }
+
+    .metric::after {
+      content: "";
+      position: absolute;
+      top: -2rem;
+      right: -2rem;
+      width: 8rem;
+      height: 8rem;
+      border-bottom-left-radius: 999px;
+      background: rgba(215, 226, 255, 0.72);
+      transition: transform 0.2s ease;
+    }
+
+    .metric.info::after {
+      background: rgba(215, 226, 255, 0.72);
+    }
+
+    .metric.warn::after {
+      background: rgba(255, 218, 214, 0.55);
+    }
+
+    .metric.good::after {
+      background: rgba(215, 226, 255, 0.72);
+    }
+
+    .metric:hover::after {
+      transform: scale(1.08);
+    }
+
+    .metric strong {
+      position: relative;
+      z-index: 1;
+      font-family: Manrope, Inter, sans-serif;
+      font-size: 2.25rem;
+      line-height: 1;
+      font-weight: 800;
+      color: #191c1d;
+    }
+
+    .metric span {
+      position: relative;
+      z-index: 1;
+      color: #414753;
+      font-size: 0.8125rem;
+      font-weight: 700;
+    }
+
+    .status {
+      display: inline-flex;
+      align-items: center;
+      min-height: 1.625rem;
+      border-radius: 0.25rem;
+      padding: 0 0.55rem;
+      background: #e6e8ea;
+      color: #414753;
+      font-size: 0.75rem;
+      font-weight: 800;
+      white-space: nowrap;
+    }
+
+    .status.ok {
+      background: rgba(16, 185, 129, 0.12);
+      color: #047857;
+    }
+
+    .status.warn {
+      background: rgba(255, 219, 204, 0.8);
+      color: #933900;
+    }
+
+    .status.danger {
+      background: #ffdad6;
+      color: #93000a;
+    }
+
+    .status.info {
+      background: rgba(215, 226, 255, 0.8);
+      color: #004492;
+    }
+
+    .row {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      flex-wrap: wrap;
+      min-width: 0;
+    }
+
+    .between {
+      justify-content: space-between;
+    }
+
+    .subtle {
+      color: #727785;
+      font-size: 0.75rem;
+    }
+
+    .muted {
+      color: #414753;
+    }
+
+    .empty {
+      min-height: 9.5rem;
+      border-radius: 0.75rem;
+      background: #ffffff;
+      box-shadow: 0 18px 36px rgba(15, 23, 42, 0.04);
+      display: grid;
+      place-items: center;
+      gap: 0.5rem;
+      text-align: center;
+      color: #3f4947;
+      padding: 1.5rem;
+    }
+
+    .empty strong {
+      color: #191c1d;
+      font-weight: 800;
+    }
+
+    .table-wrap {
+      overflow-x: auto;
+      border-radius: 0.75rem;
+      background: #ffffff;
+      box-shadow: 0 18px 36px rgba(15, 23, 42, 0.04);
+    }
+
+    table {
+      width: 100%;
+      min-width: 760px;
+      border-collapse: collapse;
+      background: #ffffff;
+    }
+
+    th,
+    td {
+      padding: 1rem 1.25rem;
+      border-bottom: 1px solid rgba(225, 227, 228, 0.7);
+      text-align: left;
+      vertical-align: top;
+      font-size: 0.8125rem;
+      line-height: 1.55;
+    }
+
+    th {
+      color: #3f4947;
+      background: #f2f4f6;
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      letter-spacing: 0.03em;
+      font-weight: 800;
+    }
+
+    tr:last-child td {
+      border-bottom: 0;
+    }
+
+    textarea.field-input,
+    textarea {
+      min-height: 6rem;
+      resize: vertical;
+      line-height: 1.55;
+    }
+
+    .conversation-card {
+      width: 100%;
+      border: 0;
+      border-radius: 0.75rem;
+      background: #f2f4f5;
+      color: #191c1d;
+      padding: 1rem;
+      display: grid;
+      gap: 0.75rem;
+      text-align: left;
+      transition: all 0.2s ease;
+    }
+
+    .conversation-card:hover,
+    .conversation-card.active {
+      background: #ffffff;
+      box-shadow: 0 12px 24px rgba(25, 28, 29, 0.04);
+    }
+
+    .conversation-card.active {
+      box-shadow: inset 4px 0 0 #006adc, 0 12px 24px rgba(25, 28, 29, 0.04);
+    }
+
+    .conversation-card strong {
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+      font-size: 0.875rem;
+      font-weight: 800;
+    }
+
+    .conversation-preview {
+      color: #414753;
+      font-size: 0.75rem;
+      line-height: 1.5;
+      display: -webkit-box;
+      -webkit-line-clamp: 2;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+    }
+
+    .message {
+      max-width: min(680px, 82%);
+      border-radius: 0.75rem;
+      background: #ffffff;
+      padding: 0.9rem 1rem;
+      box-shadow: 0 10px 24px rgba(25, 28, 29, 0.04);
+      display: grid;
+      gap: 0.5rem;
+      overflow-wrap: anywhere;
+      line-height: 1.65;
+    }
+
+    .message.incoming {
+      justify-self: start;
+    }
+
+    .message.outgoing {
+      justify-self: end;
+      color: #ffffff;
+      background: #006adc;
+    }
+
+    .message.system,
+    .message.unknown {
+      justify-self: center;
+      max-width: 90%;
+      color: #3f4947;
+      background: #e6e8ea;
+    }
+
+    .log-list {
+      display: grid;
+      gap: 0.75rem;
+    }
+
+    .log-item {
+      border-radius: 0.75rem;
+      background: #ffffff;
+      box-shadow: 0 18px 36px rgba(15, 23, 42, 0.04);
+      padding: 1rem;
+      display: grid;
+      gap: 0.5rem;
+    }
+
+    .task-row {
+      display: grid;
+      gap: 0.75rem;
+      min-width: 280px;
+    }
+
+    .task-actions {
+      display: flex;
+      gap: 0.5rem;
+      flex-wrap: wrap;
+    }
+
+    .notice {
+      min-height: 1.25rem;
+      color: #3f4947;
+      font-size: 0.75rem;
+      overflow-wrap: anywhere;
+    }
+
+    .notice.error {
+      color: #ba1a1a;
+    }
+
+    @media (max-width: 1023px) {
+      body {
+        overflow: auto;
+      }
+
+      .desktop-shell {
+        min-height: 100vh;
+      }
+
+      .section-panel {
+        scroll-margin-top: 8rem;
+      }
+    }
+
+    @media (max-width: 640px) {
+      .message {
+        max-width: 100%;
+      }
+
+      .metric {
+        min-height: 8.5rem;
+      }
+    }
+  </style>
+</head>
+<body class="bg-surface text-on-surface antialiased lg:overflow-hidden">
+  <aside class="hidden lg:flex h-screen w-64 fixed left-0 top-0 bg-white z-40 shadow-sm flex-col py-4 px-2 gap-2 border-r border-slate-100">
+    <div class="px-6 py-4 mb-4 flex items-center gap-3">
+      <div class="w-10 h-10 rounded-xl bg-primary-container text-on-primary flex items-center justify-center font-bold font-headline">AI</div>
+      <div>
+        <h1 class="text-lg font-bold text-[#006ADC] font-headline tracking-tight">智汇招商</h1>
+        <p class="text-xs text-slate-500 font-normal">AI 接待系统</p>
+      </div>
+    </div>
+
+    <nav class="flex-1 flex flex-col gap-1 px-2" aria-label="管理台导航">
+      <a class="nav-link active" href="#overviewSection"><span class="material-symbols-outlined text-[20px]">dashboard</span><span>运营总览</span></a>
+      <a class="nav-link" href="#projectSection"><span class="material-symbols-outlined text-[20px]">settings_input_component</span><span>项目配置</span></a>
+      <a class="nav-link" href="#conversationSection"><span class="material-symbols-outlined text-[20px]">forum</span><span>会话工作台</span></a>
+      <a class="nav-link" href="#taskSection"><span class="material-symbols-outlined text-[20px]">fact_check</span><span>回复审批</span></a>
+      <a class="nav-link" href="#leadSection"><span class="material-symbols-outlined text-[20px]">hub</span><span>线索中心</span></a>
+      <a class="nav-link" href="#reviewSection"><span class="material-symbols-outlined text-[20px]">reviews</span><span>评价分析</span></a>
+      <a class="nav-link" href="#logSection"><span class="material-symbols-outlined text-[20px]">description</span><span>系统日志</span></a>
+    </nav>
+
+    <div class="mt-auto px-4">
+      <div class="bg-primary-fixed/50 p-4 rounded-xl relative overflow-hidden">
+        <div class="flex items-center gap-3">
+          <div class="w-8 h-8 rounded-full bg-primary-container flex items-center justify-center text-on-primary">
+            <span class="material-symbols-outlined text-sm">support_agent</span>
+          </div>
+          <div>
+            <p class="text-xs font-medium text-on-surface-variant">企业交付版本</p>
+            <p class="text-[10px] text-on-surface-variant opacity-70">私有化部署 / API 接入</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="pt-4 mt-2 px-4 border-t border-slate-100">
+      <div class="px-3 py-2 text-xs text-slate-500 leading-relaxed">
+        管理台仅保留当前已接入的业务功能；权限、账号中心后续接入统一登录后再开放。
+      </div>
+    </div>
+  </aside>
+
+  <main class="desktop-shell lg:ml-64 flex-1 flex flex-col lg:h-screen relative bg-surface">
+    <header class="fixed top-0 left-0 lg:left-64 right-0 min-h-16 z-50 bg-[#f7f9fb]/90 backdrop-blur-md flex flex-wrap items-center justify-between gap-3 px-4 lg:px-8 py-3 lg:py-0 border-b border-slate-100">
+      <div class="flex items-center gap-4 lg:gap-6">
+        <h2 class="text-base lg:text-lg font-headline font-bold text-on-surface tracking-tight">AI 招商接待管理台</h2>
+        <div class="hidden sm:block h-4 w-px bg-surface-variant"></div>
+        <div class="flex items-center gap-2">
+          <span class="w-2 h-2 rounded-full bg-primary shadow-[0_0_8px_#006ADC]"></span>
+          <span id="connectionStatus" class="status warn">未连接</span>
+          <span id="lastRefresh" class="hidden sm:inline subtle">尚未刷新</span>
+        </div>
+      </div>
+      <div class="hidden md:flex items-center gap-6">
+        <a class="text-sm font-medium text-slate-500 hover:text-primary transition-colors" href="#projectSection">接口配置</a>
+        <a class="text-sm font-medium text-slate-500 hover:text-primary transition-colors" href="#reviewSection">评价分析</a>
+        <a class="text-sm font-medium text-slate-500 hover:text-primary transition-colors" href="#logSection">运行日志</a>
+      </div>
+      <button id="refreshBtn" class="primary-btn flex items-center gap-2">
+        刷新数据
+        <span class="material-symbols-outlined text-[14px]">refresh</span>
+      </button>
+    </header>
+
+    <nav class="lg:hidden fixed top-16 left-0 right-0 z-40 bg-white/95 backdrop-blur-xl px-4 py-3 overflow-x-auto flex gap-2 shadow-sm" aria-label="移动端导航">
+      <a class="nav-link active whitespace-nowrap" href="#overviewSection">运营总览</a>
+      <a class="nav-link whitespace-nowrap" href="#projectSection">项目配置</a>
+      <a class="nav-link whitespace-nowrap" href="#conversationSection">会话工作台</a>
+      <a class="nav-link whitespace-nowrap" href="#taskSection">回复审批</a>
+      <a class="nav-link whitespace-nowrap" href="#leadSection">线索中心</a>
+      <a class="nav-link whitespace-nowrap" href="#reviewSection">评价分析</a>
+      <a class="nav-link whitespace-nowrap" href="#logSection">系统日志</a>
+    </nav>
+
+    <div class="flex-1 lg:overflow-y-auto mt-32 lg:mt-16 p-4 lg:p-8 relative">
+      <div class="max-w-[1400px] mx-auto space-y-8 pb-20">
+        <section id="overviewSection" class="section-panel active-section">
+          <div class="flex justify-between items-end mb-5">
+            <div>
+              <h2 class="text-2xl font-headline font-bold text-on-background tracking-tight">运营总览</h2>
+              <p class="text-on-surface-variant font-medium text-sm mt-1">实时查看会话、线索、待回复、待发送和 Agent 状态。</p>
+            </div>
+          </div>
+          <div id="overview" class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-6"></div>
+        </section>
+
+        <section id="projectSection" class="section-panel grid grid-cols-1 lg:grid-cols-3 gap-6">
+          <div class="lg:col-span-3 bg-surface-container-lowest rounded-xl p-5 shadow-[0_18px_36px_rgba(15,23,42,0.04)]">
+            <div class="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-4 mb-4">
+              <div>
+                <h2 class="text-2xl font-headline font-bold text-on-background tracking-tight">项目配置</h2>
+                <p class="text-on-surface-variant font-medium text-sm mt-1">配置 API 连接、项目身份、回复策略和接管规则。</p>
+              </div>
+              <button id="refreshOverviewBtn" class="secondary-btn">测试并刷新</button>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-3 items-end">
+              <label class="field-label">API 地址
+                <input id="apiBaseUrl" class="field-input" value="http://127.0.0.1:3001" autocomplete="off">
+              </label>
+              <label class="field-label">API Token
+                <input id="apiToken" class="field-input" placeholder="生产环境必填" autocomplete="off">
+              </label>
+              <label class="field-label">项目 ID
+                <input id="projectId" class="field-input" value="project-1" autocomplete="off">
+              </label>
+            </div>
+            <div id="notice" class="notice mt-4">填写 API 地址和项目 ID 后刷新数据。</div>
+          </div>
+          <div class="lg:col-span-1 flex flex-col gap-4">
+            <h3 class="text-xl font-headline font-bold text-on-background tracking-tight">AI 经营洞察</h3>
+            <div id="quickFeed" class="flex flex-col gap-3">
+              <div class="bg-tertiary-fixed p-5 rounded-xl">
+                <div class="flex justify-between items-start mb-2">
+                  <span class="text-xs font-bold text-tertiary tracking-wide">经营洞察</span>
+                  <span class="text-[10px] text-outline">实时</span>
+                </div>
+                <p class="text-sm text-on-background font-medium leading-snug mb-3">系统会持续汇总客户会话、线索变化、评价反馈和异常状态。</p>
+                <div class="flex gap-2">
+                  <span class="text-[10px] font-medium bg-surface-container-low px-2 py-1 rounded text-on-surface-variant">抖音私信</span>
+                  <span class="text-[10px] font-medium bg-surface-container-low px-2 py-1 rounded text-on-surface-variant">大众点评</span>
+                </div>
+              </div>
+              <div class="bg-surface-container-lowest p-5 rounded-xl shadow-[0_18px_36px_rgba(15,23,42,0.04)]">
+                <div class="flex justify-between items-start mb-2">
+                  <span class="text-xs font-bold text-tertiary tracking-wide">策略控制</span>
+                  <span class="text-[10px] text-outline">配置</span>
+                </div>
+                <p class="text-sm text-on-background font-medium leading-snug mb-3">自动发送、人工接管和项目启用状态在右侧统一控制。</p>
+                <span class="text-[10px] font-medium bg-surface-container-low px-2 py-1 rounded text-on-surface-variant">企业交付</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="lg:col-span-2 flex flex-col gap-6">
+            <div class="bg-surface-container-lowest rounded-xl p-6 h-fit shadow-[0_18px_36px_rgba(15,23,42,0.04)]">
+              <div>
+                <div class="flex flex-col sm:flex-row sm:justify-between sm:items-center gap-3 mb-6">
+                  <div>
+                    <h2 class="text-xl font-headline font-bold text-on-background tracking-tight">回复与接管策略</h2>
+                    <p class="text-on-surface-variant text-sm mt-1">控制回复模式、自动发送和人工接管策略。</p>
+                  </div>
+                  <button id="saveProjectBtn" class="primary-btn">保存配置</button>
+                </div>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                  <div class="space-y-4">
+                    <label class="field-label">项目名称
+                      <input id="projectName" class="field-input" value="招商项目" autocomplete="off">
+                    </label>
+                    <label class="field-label">回复模式
+                      <select id="replyMode" class="field-input">
+                        <option value="readonly">只生成建议</option>
+                        <option value="assisted">人工确认后发送</option>
+                        <option value="auto">自动排队发送</option>
+                      </select>
+                    </label>
+                    <label class="field-label">运营负责人
+                      <input id="ownerName" class="field-input" value="销售团队" autocomplete="off">
+                    </label>
+                  </div>
+                  <div class="space-y-5 flex flex-col justify-center">
+                    <label class="flex items-center justify-between gap-4">
+                      <span><span class="block text-sm font-semibold text-on-background">自动发送</span><span class="text-[10px] text-on-surface-variant">开启后，符合策略的回复会自动进入发送队列</span></span>
+                      <input id="autoSendEnabled" class="w-5 h-5 rounded text-primary focus:ring-primary-fixed-dim" type="checkbox">
+                    </label>
+                    <label class="flex items-center justify-between gap-4">
+                      <span><span class="block text-sm font-semibold text-on-background">人工接管</span><span class="text-[10px] text-on-surface-variant">高风险、复杂问题转人工处理</span></span>
+                      <input id="handoffEnabled" class="w-5 h-5 rounded text-primary focus:ring-primary-fixed-dim" type="checkbox" checked>
+                    </label>
+                    <label class="flex items-center justify-between gap-4 pt-2 border-t border-surface-variant/50">
+                      <span class="block text-sm font-bold text-on-background">项目状态</span>
+                      <span class="flex items-center gap-2"><input id="projectEnabled" class="w-5 h-5 rounded text-primary focus:ring-primary-fixed-dim" type="checkbox" checked><span class="status ok">已启用</span></span>
+                    </label>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section id="conversationSection" class="section-panel">
+          <div class="flex flex-col sm:flex-row sm:justify-between sm:items-end gap-3 mb-6">
+            <div>
+              <h2 class="text-2xl font-headline font-bold text-on-background tracking-tight">会话工作台</h2>
+              <p class="text-on-surface-variant font-medium text-sm mt-1">查看客户对话、识别接管状态，并快速处理异常会话。</p>
+            </div>
+            <span id="conversationCount" class="status">0 个会话</span>
+          </div>
+          <div class="grid grid-cols-1 lg:grid-cols-[360px_minmax(0,1fr)] gap-6 min-h-[560px]">
+            <div class="bg-surface-container-low rounded-[24px] p-4 flex flex-col gap-4">
+              <div class="flex flex-col gap-3">
+                <h3 class="font-headline text-lg font-bold text-on-surface tracking-tight">当前会话</h3>
+                <label class="field-label normal-case">搜索会话
+                  <input id="conversationSearch" class="field-input" placeholder="客户昵称或最近消息" autocomplete="off">
+                </label>
+                <div class="flex gap-2 overflow-x-auto pb-1">
+                  <span class="px-3 py-1 rounded-full bg-primary-fixed text-on-primary-fixed text-xs font-semibold whitespace-nowrap">需要接管</span>
+                  <span class="px-3 py-1 rounded-full bg-surface-container-highest text-on-surface-variant text-xs font-medium whitespace-nowrap">最近会话</span>
+                </div>
+              </div>
+              <div id="conversations" class="flex-1 overflow-y-auto flex flex-col gap-2 pr-1"></div>
+            </div>
+            <div class="bg-surface-container-lowest rounded-[24px] ambient-shadow overflow-hidden grid grid-rows-[auto_1fr] min-h-[520px]">
+              <div id="conversationHead" class="p-5 border-b border-surface-variant/40"></div>
+              <div id="conversationDetail" class="p-5 overflow-y-auto bg-gradient-to-b from-white to-surface-container-low grid content-start gap-3"></div>
+            </div>
+          </div>
+        </section>
+
+        <section id="taskSection" class="section-panel">
+          <div class="flex flex-col sm:flex-row sm:justify-between sm:items-end gap-3 mb-6">
+            <div>
+              <h2 class="text-2xl font-headline font-bold text-on-background tracking-tight">回复审批</h2>
+              <p class="text-on-surface-variant font-medium text-sm mt-1">生成建议回复、人工调整文案，并加入发送队列。</p>
+            </div>
+            <span id="taskCount" class="status">0 个任务</span>
+          </div>
+          <div id="tasks"></div>
+        </section>
+
+        <section id="leadSection" class="section-panel">
+          <div class="flex flex-col sm:flex-row sm:justify-between sm:items-end gap-3 mb-6">
+            <div>
+              <h2 class="text-2xl font-headline font-bold text-on-background tracking-tight">线索中心</h2>
+              <p class="text-on-surface-variant font-medium text-sm mt-1">跟进意向等级、联系方式、城市和销售状态。</p>
+            </div>
+            <span id="leadCount" class="status">0 条线索</span>
+          </div>
+          <div id="leads"></div>
+        </section>
+
+        <section id="reviewSection" class="section-panel">
+          <div class="flex flex-col sm:flex-row sm:justify-between sm:items-end gap-3 mb-6">
+            <div>
+              <h2 class="text-2xl font-headline font-bold text-on-background tracking-tight">评价分析</h2>
+              <p class="text-on-surface-variant font-medium text-sm mt-1">接入大众点评等评价渠道，生成日报、月报和评论回复。</p>
+            </div>
+            <div class="row">
+              <span id="reviewCount" class="status">0 条评价</span>
+              <button class="secondary-btn" data-review-report="daily">生成日报</button>
+              <button class="secondary-btn" data-review-report="monthly">生成月报</button>
+            </div>
+          </div>
+          <div id="reviews"></div>
+          <div class="h-4"></div>
+          <div id="reviewTasks"></div>
+          <div class="h-4"></div>
+          <div id="reviewReports" class="log-list"></div>
+        </section>
+
+        <section id="logSection" class="section-panel">
+          <div class="flex flex-col sm:flex-row sm:justify-between sm:items-end gap-3 mb-6">
+            <div>
+              <h2 class="text-2xl font-headline font-bold text-on-background tracking-tight">系统日志</h2>
+              <p class="text-on-surface-variant font-medium text-sm mt-1">追踪消息入库、回复生成、发送结果和同步状态。</p>
+            </div>
+            <button class="secondary-btn" id="refreshLogsBtn">刷新日志</button>
+          </div>
+          <div id="logs" class="log-list"></div>
+        </section>
+      </div>
+    </div>
+  </main>
+
+  <script>
+    const state = {
+      selectedConversationId: '',
+      conversations: [],
+      detail: null,
+      tasks: [],
+      leads: [],
+      reviews: [],
+      reviewTasks: [],
+      reviewReports: [],
+      logs: [],
+      overview: null,
+    };
+
+    const $ = id => document.getElementById(id);
+
+    const metricLabels = {
+      projectId: '项目',
+      conversations: '会话数',
+      leads: '线索数',
+      pendingReplyTasks: '待生成',
+      queuedReplyTasks: '待发送',
+      reviews: '评价数',
+      pendingReviewReplyTasks: '待回评',
+      staleAgents: '异常 Agent',
+      recentWarnings: '近期待处理',
+    };
+
+    const statusText = {
+      pending: '待生成',
+      processing: '生成中',
+      suggested: '待审核',
+      queued: '待发送',
+      sending: '发送中',
+      sent: '已发送',
+      handoff: '人工接管',
+      failed: '失败',
+      readonly: '只读',
+      assisted: '人工确认',
+      auto: '自动发送',
+      low: '低意向',
+      medium: '中意向',
+      high: '高意向',
+      info: '信息',
+      warning: '警告',
+      critical: '严重',
+      error: '错误',
+    };
+
+    const leadStatuses = ['new','chatting','contact_pending','contacted','qualified','invited','visited','deal','invalid','lost'];
+    const leadStatusLabels = {
+      new: '新线索',
+      chatting: '沟通中',
+      contact_pending: '待联系',
+      contacted: '已联系',
+      qualified: '已确认',
+      invited: '已邀约',
+      visited: '已到访',
+      deal: '已成交',
+      invalid: '无效',
+      lost: '流失',
+    };
+
+    function config() {
+      return {
+        apiBaseUrl: $('apiBaseUrl').value.trim().replace(/\/$/, ''),
+        apiToken: $('apiToken').value.trim(),
+        projectId: $('projectId').value.trim(),
+      };
+    }
+
+    async function post(path, body) {
+      const cfg = config();
+      if (!cfg.apiBaseUrl) throw new Error('请填写 API 地址');
+      const response = await fetch(`${cfg.apiBaseUrl}${path}`, {
+        method: 'POST',
+        headers: {
+          'content-type': 'application/json',
+          ...(cfg.apiToken ? { authorization: `Bearer ${cfg.apiToken}` } : {}),
+        },
+        body: JSON.stringify(body),
+      });
+      const text = await response.text();
+      const payload = text ? JSON.parse(text) : {};
+      if (!response.ok) throw new Error(payload.error || text || response.statusText);
+      return payload;
+    }
+
+    function setNotice(message, isError = false) {
+      $('notice').textContent = message;
+      $('notice').className = isError ? 'notice error mt-4' : 'notice mt-4';
+      $('connectionStatus').textContent = isError ? '连接异常' : '已连接';
+      $('connectionStatus').className = isError ? 'status danger' : 'status ok';
+    }
+
+    function setLoading(isLoading) {
+      ['refreshBtn', 'refreshOverviewBtn', 'refreshLogsBtn', 'saveProjectBtn'].forEach(id => {
+        $(id).disabled = isLoading;
+      });
+    }
+
+    function renderOverview(overview) {
+      const safeOverview = overview || {
+        conversations: 0,
+        leads: 0,
+        pendingReplyTasks: 0,
+        queuedReplyTasks: 0,
+        reviews: 0,
+        pendingReviewReplyTasks: 0,
+        staleAgents: 0,
+        recentWarnings: 0,
+      };
+      $('overview').innerHTML = Object.entries(safeOverview).map(([key, value]) => {
+        const tone = key === 'staleAgents' || key === 'recentWarnings'
+          ? Number(value) > 0 ? 'warn' : 'good'
+          : key === 'queuedReplyTasks' || key === 'pendingReplyTasks' || key === 'pendingReviewReplyTasks' ? 'info' : '';
+        return `
+          <div class="metric ${tone}">
+            <span>${metricLabels[key] || key}</span>
+            <strong>${escapeHtml(value)}</strong>
+            <span>${metricHint(key, value)}</span>
+          </div>
+        `;
+      }).join('');
+    }
+
+    function metricHint(key, value) {
+      if (key === 'queuedReplyTasks') return Number(value) > 0 ? '等待 Agent 发送' : '发送队列为空';
+      if (key === 'pendingReplyTasks') return Number(value) > 0 ? '等待生成建议' : '暂无待生成';
+      if (key === 'reviews') return Number(value) > 0 ? '已接入评价数据' : '暂无评价';
+      if (key === 'pendingReviewReplyTasks') return Number(value) > 0 ? '等待生成回评' : '暂无待回评';
+      if (key === 'staleAgents') return Number(value) > 0 ? '需要检查采集端' : 'Agent 状态正常';
+      if (key === 'recentWarnings') return Number(value) > 0 ? '请查看日志' : '暂无异常';
+      return '当前项目数据';
+    }
+
+    function filteredConversations() {
+      const keyword = $('conversationSearch').value.trim().toLowerCase();
+      if (!keyword) return state.conversations;
+      return state.conversations.filter(item => [
+        item.sessionName,
+        item.lastMessage,
+        item.id,
+      ].some(value => String(value || '').toLowerCase().includes(keyword)));
+    }
+
+    function renderConversations() {
+      const conversations = filteredConversations();
+      $('conversationCount').textContent = `${state.conversations.length} 个会话`;
+      if (conversations.length === 0) {
+        $('conversations').innerHTML = emptyState('暂无会话', '抖音 Agent 上报消息后，会话会出现在这里。');
+        return;
+      }
+      $('conversations').innerHTML = conversations.map(item => `
+        <button class="conversation-card ${state.selectedConversationId === item.id ? 'active' : ''}" data-open-conversation="${escapeAttr(item.id)}">
+          <div class="row between">
+            <strong>${escapeHtml(item.sessionName)}</strong>
+            ${item.handoff ? '<span class="status danger">接管</span>' : '<span class="status ok">正常</span>'}
+          </div>
+          <div class="conversation-preview">${escapeHtml(item.lastMessage || '暂无消息')}</div>
+          <div class="row between">
+            <span class="subtle">${item.messageCount || 0} 条消息</span>
+            <span class="subtle">${formatTime(item.lastMessageAt)}</span>
+          </div>
+        </button>
+      `).join('');
+    }
+
+    function renderConversationDetail() {
+      if (!state.detail) {
+        $('conversationHead').innerHTML = `
+          <div>
+            <h3 class="font-headline text-lg font-bold">请选择一个会话</h3>
+            <p class="text-on-surface-variant text-sm mt-1">查看客户消息、发送方向和接管状态。</p>
+          </div>
+        `;
+        $('conversationDetail').innerHTML = emptyState('未选择会话', '从左侧会话列表选择客户后，消息内容会显示在这里。');
+        return;
+      }
+      const { conversation, messages } = state.detail;
+      $('conversationHead').innerHTML = `
+        <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3">
+          <div>
+            <h3 class="font-headline text-lg font-bold">${escapeHtml(conversation.sessionName)}</h3>
+            <p class="text-on-surface-variant text-xs mt-1">${escapeHtml(conversation.id)}</p>
+          </div>
+          <div class="row">
+            <span class="status ${conversation.handoff ? 'danger' : 'ok'}">${conversation.handoff ? '人工接管' : '自动接待'}</span>
+            <button class="warning" data-handoff="${escapeAttr(conversation.id)}" data-handoff-next="${conversation.handoff ? 'false' : 'true'}">${conversation.handoff ? '取消接管' : '人工接管'}</button>
+          </div>
+        </div>
+      `;
+      if (!messages.length) {
+        $('conversationDetail').innerHTML = emptyState('暂无消息', '该会话还没有可展示的消息。');
+        return;
+      }
+      $('conversationDetail').innerHTML = messages.map(message => `
+        <div class="message ${escapeAttr(message.direction)}">
+          <div>${escapeHtml(message.text)}</div>
+          <div class="subtle">${directionText(message.direction)} · ${formatTime(message.capturedAt)}</div>
+        </div>
+      `).join('');
+    }
+
+    function renderTasks() {
+      $('taskCount').textContent = `${state.tasks.length} 个任务`;
+      if (state.tasks.length === 0) {
+        $('tasks').innerHTML = emptyState('暂无待处理回复', '新私信入库后，Worker 会生成待处理任务。');
+        return;
+      }
+      $('tasks').innerHTML = `
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr>
+                <th>任务</th>
+                <th>状态</th>
+                <th>回复内容</th>
+                <th>操作</th>
+              </tr>
+            </thead>
+            <tbody>
+              ${state.tasks.map(task => `
+                <tr>
+                  <td>
+                    <strong>${escapeHtml(task.id)}</strong>
+                    <div class="subtle">${escapeHtml(task.conversationId)}</div>
+                  </td>
+                  <td>
+                    <div class="row">
+                      <span class="status ${taskTone(task.status)}">${statusText[task.status] || task.status}</span>
+                      <span class="status">${statusText[task.mode] || task.mode}</span>
+                    </div>
+                  </td>
+                  <td>
+                    <div class="task-row">
+                      <textarea class="field-input" data-reply-text="${escapeAttr(task.id)}" placeholder="生成或编辑建议回复">${escapeHtml(task.suggestedReply || '')}</textarea>
+                      ${task.handoffReason ? `<div class="subtle">${escapeHtml(task.handoffReason)}</div>` : ''}
+                    </div>
+                  </td>
+                  <td>
+                    <div class="task-actions">
+                      <button class="primary-btn" data-generate="${escapeAttr(task.id)}">生成建议</button>
+                      <button class="secondary-btn" data-queue="${escapeAttr(task.id)}">加入队列</button>
+                    </div>
+                  </td>
+                </tr>
+              `).join('')}
+            </tbody>
+          </table>
+        </div>
+      `;
+    }
+
+    function renderLeads() {
+      $('leadCount').textContent = `${state.leads.length} 条线索`;
+      if (state.leads.length === 0) {
+        $('leads').innerHTML = emptyState('暂无线索', '客户留下手机号、微信或表达明确意向后，会自动生成线索。');
+        return;
+      }
+      $('leads').innerHTML = `
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr>
+                <th>客户摘要</th>
+                <th>联系方式</th>
+                <th>意向</th>
+                <th>状态</th>
+                <th>更新时间</th>
+              </tr>
+            </thead>
+            <tbody>
+              ${state.leads.map(lead => `
+                <tr>
+                  <td>
+                    <strong>${escapeHtml(lead.profile.summary || lead.id)}</strong>
+                    <div class="subtle">${escapeHtml(lead.conversationId)}</div>
+                  </td>
+                  <td>
+                    <div>${escapeHtml(lead.profile.phone || '未留手机号')}</div>
+                    <div class="subtle">${escapeHtml(lead.profile.wechat || '未留微信')}</div>
+                  </td>
+                  <td>
+                    <span class="status ${intentTone(lead.profile.intentLevel)}">${statusText[lead.profile.intentLevel] || lead.profile.intentLevel}</span>
+                    <div class="subtle">${escapeHtml([lead.profile.city, lead.profile.budget, lead.profile.openingTime].filter(Boolean).join(' · ') || '资料待补充')}</div>
+                  </td>
+                  <td>
+                    <select class="field-input" data-lead-status="${escapeAttr(lead.id)}">
+                      ${leadStatuses.map(status => `
+                        <option value="${status}" ${status === lead.status ? 'selected' : ''}>${leadStatusLabels[status] || status}</option>
+                      `).join('')}
+                    </select>
+                  </td>
+                  <td>${formatTime(lead.updatedAt)}</td>
+                </tr>
+              `).join('')}
+            </tbody>
+          </table>
+        </div>
+      `;
+    }
+
+    function renderReviews() {
+      $('reviewCount').textContent = `${state.reviews.length} 条评价`;
+      if (state.reviews.length === 0) {
+        $('reviews').innerHTML = emptyState('暂无评价', '大众点评 Agent 上报评价后，会显示在这里。');
+      } else {
+        $('reviews').innerHTML = `
+          <div class="table-wrap">
+            <table>
+              <thead>
+                <tr>
+                  <th>门店/用户</th>
+                  <th>评分</th>
+                  <th>评价内容</th>
+                  <th>情绪</th>
+                  <th>回复状态</th>
+                </tr>
+              </thead>
+              <tbody>
+                ${state.reviews.map(review => `
+                  <tr>
+                    <td>
+                      <strong>${escapeHtml(review.shopName)}</strong>
+                      <div class="subtle">${escapeHtml(review.authorName)}</div>
+                    </td>
+                    <td>${escapeHtml(review.rating ?? '无')}</td>
+                    <td>${escapeHtml(review.content)}</td>
+                    <td><span class="status ${reviewSentimentTone(review.sentiment)}">${reviewSentimentText(review.sentiment)}</span></td>
+                    <td><span class="status ${review.replied ? 'ok' : 'warn'}">${review.replied ? '已回复' : '待回复'}</span></td>
+                  </tr>
+                `).join('')}
+              </tbody>
+            </table>
+          </div>
+        `;
+      }
+
+      if (state.reviewTasks.length === 0) {
+        $('reviewTasks').innerHTML = emptyState('暂无评论回复任务', '需要回复的评价入库后，会在这里生成待处理任务。');
+      } else {
+        const reviewMap = new Map(state.reviews.map(review => [review.id, review]));
+        $('reviewTasks').innerHTML = `
+          <div class="mb-3">
+            <h3 class="text-lg font-headline font-bold text-on-surface">评论回复任务</h3>
+            <p class="text-on-surface-variant text-sm">生成或调整大众点评评论回复，并加入发送队列。</p>
+          </div>
+          <div class="table-wrap">
+            <table>
+              <thead>
+                <tr>
+                  <th>评价</th>
+                  <th>状态</th>
+                  <th>回复内容</th>
+                  <th>操作</th>
+                </tr>
+              </thead>
+              <tbody>
+                ${state.reviewTasks.map(task => {
+                  const review = reviewMap.get(task.reviewId);
+                  return `
+                    <tr>
+                      <td>
+                        <strong>${escapeHtml(review?.shopName || task.source)}</strong>
+                        <div class="subtle">${escapeHtml(review ? `${review.authorName} · ${review.content}` : task.reviewId)}</div>
+                      </td>
+                      <td>
+                        <div class="row">
+                          <span class="status ${taskTone(task.status)}">${statusText[task.status] || task.status}</span>
+                          <span class="status">${statusText[task.mode] || task.mode}</span>
+                        </div>
+                      </td>
+                      <td>
+                        <textarea class="field-input" data-review-reply-text="${escapeAttr(task.id)}" placeholder="生成或编辑评论回复">${escapeHtml(task.suggestedReply || '')}</textarea>
+                      </td>
+                      <td>
+                        <div class="task-actions">
+                          <button class="primary-btn" data-review-generate="${escapeAttr(task.id)}">生成回复</button>
+                          <button class="secondary-btn" data-review-queue="${escapeAttr(task.id)}">加入队列</button>
+                        </div>
+                      </td>
+                    </tr>
+                  `;
+                }).join('')}
+              </tbody>
+            </table>
+          </div>
+        `;
+      }
+
+      if (state.reviewReports.length === 0) {
+        $('reviewReports').innerHTML = emptyState('暂无评价报告', '生成日报或月报后，分析结果会显示在这里。');
+        return;
+      }
+      $('reviewReports').innerHTML = state.reviewReports.map(report => `
+        <div class="log-item">
+          <div class="row between">
+            <div class="row">
+              <span class="status info">${report.period === 'daily' ? '日报' : '月报'}</span>
+              <strong>${escapeHtml(report.summary)}</strong>
+            </div>
+            <span class="subtle">${formatTime(report.periodStart)} 至 ${formatTime(report.periodEnd)}</span>
+          </div>
+          <div class="subtle">
+            评价 ${report.reviewCount} 条，均分 ${escapeHtml(report.averageRating ?? '无')}，
+            正向 ${report.sentiment.positive}，中性 ${report.sentiment.neutral}，负向 ${report.sentiment.negative}
+          </div>
+          <div>${escapeHtml([...(report.risks || []), ...(report.suggestions || [])].slice(0, 3).join('；'))}</div>
+        </div>
+      `).join('');
+    }
+
+    function renderLogs() {
+      if (state.logs.length === 0) {
+        $('logs').innerHTML = emptyState('暂无日志', '系统事件、同步结果和异常告警会显示在这里。');
+        return;
+      }
+      $('logs').innerHTML = state.logs.map(log => `
+        <div class="log-item">
+          <div class="row between">
+            <div class="row">
+              <span class="status ${logTone(log.level)}">${statusText[log.level] || log.level}</span>
+              <strong>${escapeHtml(log.type)}</strong>
+            </div>
+            <span class="subtle">${formatTime(log.createdAt)}</span>
+          </div>
+          <div>${escapeHtml(log.message)}</div>
+        </div>
+      `).join('');
+    }
+
+    async function refreshAll() {
+      const cfg = config();
+      if (!cfg.projectId) {
+        setNotice('请填写项目 ID。', true);
+        return;
+      }
+      setLoading(true);
+      try {
+        const [project, overview, conversations, pending, suggested, queued, failed, leads, reviews, reviewTasks, reports, logs] = await Promise.all([
+          post('/projects/get', { projectId: cfg.projectId }).catch(() => null),
+          post('/ops/overview', { projectId: cfg.projectId }),
+          post('/conversations', { projectId: cfg.projectId }),
+          post('/reply-tasks/list', { projectId: cfg.projectId, status: 'pending', limit: 30 }),
+          post('/reply-tasks/list', { projectId: cfg.projectId, status: 'suggested', limit: 30 }),
+          post('/reply-tasks/list', { projectId: cfg.projectId, status: 'queued', limit: 30 }),
+          post('/reply-tasks/list', { projectId: cfg.projectId, status: 'failed', limit: 10 }),
+          post('/leads', { projectId: cfg.projectId }),
+          post('/reviews/list', { projectId: cfg.projectId, source: 'dianping', limit: 50 }),
+          post('/review-reply-tasks/list', { projectId: cfg.projectId, limit: 30 }),
+          post('/review-reports/list', { projectId: cfg.projectId, source: 'dianping', limit: 10 }),
+          post('/logs', { projectId: cfg.projectId, limit: 50 }),
+        ]);
+        if (project?.project) applyProject(project.project);
+        state.overview = overview.overview;
+        state.conversations = conversations.conversations || [];
+        state.tasks = [...(pending.tasks || []), ...(suggested.tasks || []), ...(queued.tasks || []), ...(failed.tasks || [])];
+        state.leads = leads.leads || [];
+        state.reviews = reviews.reviews || [];
+        state.reviewTasks = reviewTasks.tasks || [];
+        state.reviewReports = reports.reports || [];
+        state.logs = logs.logs || [];
+        if (state.selectedConversationId) {
+          await loadConversation(state.selectedConversationId, false).catch(() => {
+            state.selectedConversationId = '';
+            state.detail = null;
+          });
+        }
+        renderAll();
+        $('lastRefresh').textContent = `更新于 ${new Date().toLocaleString()}`;
+        setNotice('数据已刷新。');
+      } catch (error) {
+        setNotice(error.message, true);
+      } finally {
+        setLoading(false);
+      }
+    }
+
+    async function loadConversation(conversationId, rerender = true) {
+      const detail = await post('/conversations/detail', { conversationId });
+      state.selectedConversationId = conversationId;
+      state.detail = detail;
+      if (rerender) {
+        renderConversations();
+        renderConversationDetail();
+      }
+    }
+
+    async function saveProject() {
+      const cfg = config();
+      setLoading(true);
+      try {
+        await post('/projects/upsert', {
+          id: cfg.projectId,
+          name: $('projectName').value.trim() || cfg.projectId,
+          replyMode: $('replyMode').value,
+          autoSendEnabled: $('autoSendEnabled').checked,
+          handoffEnabled: $('handoffEnabled').checked,
+          enabled: $('projectEnabled').checked,
+          ownerName: $('ownerName').value.trim(),
+        });
+        await refreshAll();
+        setNotice('项目配置已保存。');
+      } catch (error) {
+        setNotice(error.message, true);
+      } finally {
+        setLoading(false);
+      }
+    }
+
+    function applyProject(project) {
+      $('projectName').value = project.name || $('projectName').value;
+      $('replyMode').value = project.replyMode || 'readonly';
+      $('autoSendEnabled').checked = Boolean(project.autoSendEnabled);
+      $('handoffEnabled').checked = project.handoffEnabled !== false;
+      $('projectEnabled').checked = project.enabled !== false;
+    }
+
+    function renderAll() {
+      renderOverview(state.overview);
+      renderConversations();
+      renderConversationDetail();
+      renderTasks();
+      renderLeads();
+      renderReviews();
+      renderLogs();
+      syncActiveNavFromHash();
+    }
+
+    function emptyState(title, description) {
+      return `
+        <div class="empty">
+          <strong>${escapeHtml(title)}</strong>
+          <span>${escapeHtml(description)}</span>
+        </div>
+      `;
+    }
+
+    function escapeHtml(value) {
+      return String(value ?? '').replace(/[&<>"']/g, char => ({
+        '&': '&amp;',
+        '<': '&lt;',
+        '>': '&gt;',
+        '"': '&quot;',
+        "'": '&#39;',
+      }[char]));
+    }
+
+    function escapeAttr(value) {
+      return escapeHtml(value).replace(/`/g, '&#96;');
+    }
+
+    function formatTime(value) {
+      if (!value) return '暂无时间';
+      const date = new Date(value);
+      if (Number.isNaN(date.getTime())) return String(value);
+      return date.toLocaleString();
+    }
+
+    function directionText(direction) {
+      if (direction === 'incoming') return '客户';
+      if (direction === 'outgoing') return '客服';
+      if (direction === 'system') return '系统';
+      return '未知';
+    }
+
+    function taskTone(status) {
+      if (status === 'sent') return 'ok';
+      if (status === 'queued' || status === 'suggested') return 'info';
+      if (status === 'handoff' || status === 'failed') return 'danger';
+      return 'warn';
+    }
+
+    function intentTone(intent) {
+      if (intent === 'high') return 'danger';
+      if (intent === 'medium') return 'warn';
+      return 'ok';
+    }
+
+    function logTone(level) {
+      if (level === 'error' || level === 'critical') return 'danger';
+      if (level === 'warning') return 'warn';
+      return 'info';
+    }
+
+    function reviewSentimentTone(sentiment) {
+      if (sentiment === 'negative') return 'danger';
+      if (sentiment === 'neutral') return 'warn';
+      return 'ok';
+    }
+
+    function reviewSentimentText(sentiment) {
+      if (sentiment === 'negative') return '负向';
+      if (sentiment === 'neutral') return '中性';
+      if (sentiment === 'positive') return '正向';
+      return sentiment || '未知';
+    }
+
+    function syncActiveNavFromHash() {
+      const requestedHash = window.location.hash || '#overviewSection';
+      const hash = document.querySelector(requestedHash) ? requestedHash : '#overviewSection';
+      document.querySelectorAll('.nav-link').forEach(link => {
+        link.classList.toggle('active', link.getAttribute('href') === hash);
+      });
+      document.querySelectorAll('.section-panel').forEach(section => {
+        section.classList.toggle('active-section', `#${section.id}` === hash);
+      });
+      if (window.location.hash !== hash) {
+        history.replaceState(null, '', hash);
+      }
+    }
+
+    document.addEventListener('click', async event => {
+      const target = event.target.closest('button, a');
+      if (!target) return;
+      if (target.matches('.nav-link')) {
+        const navHash = target.getAttribute('href') || '#overviewSection';
+        document.querySelectorAll('.nav-link').forEach(link => link.classList.remove('active'));
+        document.querySelectorAll(`.nav-link[href="${navHash}"]`).forEach(link => link.classList.add('active'));
+        document.querySelectorAll('.section-panel').forEach(section => {
+          section.classList.toggle('active-section', `#${section.id}` === navHash);
+        });
+        return;
+      }
+      const conversationId = target.dataset.openConversation;
+      const generateId = target.dataset.generate;
+      const queueId = target.dataset.queue;
+      const handoffId = target.dataset.handoff;
+      const reviewReportPeriod = target.dataset.reviewReport;
+      const reviewGenerateId = target.dataset.reviewGenerate;
+      const reviewQueueId = target.dataset.reviewQueue;
+      try {
+        if (conversationId) {
+          await loadConversation(conversationId);
+        }
+        if (generateId) {
+          target.disabled = true;
+          await post('/reply-tasks/generate', { taskId: generateId });
+          await refreshAll();
+          setNotice('建议回复已生成。');
+        }
+        if (queueId) {
+          const textarea = document.querySelector(`[data-reply-text="${CSS.escape(queueId)}"]`);
+          await post('/reply-tasks/queue-send', { taskId: queueId, replyText: textarea.value });
+          await refreshAll();
+          setNotice('已加入发送队列。');
+        }
+        if (handoffId) {
+          await post('/conversations/handoff', {
+            conversationId: handoffId,
+            handoff: target.dataset.handoffNext === 'true',
+            reason: '管理台手动处理',
+          });
+          await loadConversation(handoffId, false);
+          await refreshAll();
+          setNotice('会话接管状态已更新。');
+        }
+        if (reviewReportPeriod) {
+          await post('/review-reports/generate', {
+            projectId: config().projectId,
+            source: 'dianping',
+            period: reviewReportPeriod,
+          });
+          await refreshAll();
+          setNotice(reviewReportPeriod === 'daily' ? '评价日报已生成。' : '评价月报已生成。');
+        }
+        if (reviewGenerateId) {
+          target.disabled = true;
+          await post('/review-reply-tasks/generate', { taskId: reviewGenerateId });
+          await refreshAll();
+          setNotice('评论回复已生成。');
+        }
+        if (reviewQueueId) {
+          const textarea = document.querySelector(`[data-review-reply-text="${CSS.escape(reviewQueueId)}"]`);
+          await post('/review-reply-tasks/queue-send', { taskId: reviewQueueId, replyText: textarea.value });
+          await refreshAll();
+          setNotice('评论回复已加入发送队列。');
+        }
+      } catch (error) {
+        setNotice(error.message, true);
+      }
+    });
+
+    document.addEventListener('change', async event => {
+      const target = event.target;
+      const leadId = target.dataset.leadStatus;
+      if (!leadId) return;
+      try {
+        await post('/leads/update-status', { leadId, status: target.value });
+        await refreshAll();
+        setNotice('线索状态已更新。');
+      } catch (error) {
+        setNotice(error.message, true);
+      }
+    });
+
+    $('conversationSearch').addEventListener('input', renderConversations);
+    $('refreshBtn').addEventListener('click', refreshAll);
+    $('refreshOverviewBtn').addEventListener('click', refreshAll);
+    $('refreshLogsBtn').addEventListener('click', refreshAll);
+    $('saveProjectBtn').addEventListener('click', saveProject);
+    window.addEventListener('hashchange', syncActiveNavFromHash);
+
+    renderAll();
+  </script>
+</body>
+</html>

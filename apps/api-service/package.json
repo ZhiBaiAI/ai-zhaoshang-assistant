@@ -1,0 +1,26 @@
+{
+  "name": "api-service",
+  "version": "0.1.0",
+  "private": true,
+  "main": "src/index.ts",
+  "scripts": {
+    "migrate": "tsx src/migrate.ts",
+    "start": "tsx src/index.ts",
+    "test": "tsx --test \"src/**/*.test.ts\"",
+    "typecheck": "tsc --noEmit"
+  },
+  "dependencies": {
+    "@ai-zhaoshang/llm-providers": "0.1.0",
+    "@ai-zhaoshang/feishu": "0.1.0",
+    "@ai-zhaoshang/notify": "0.1.0",
+    "@ai-zhaoshang/shared": "0.1.0",
+    "@ai-zhaoshang/rag": "0.1.0",
+    "pg": "^8.11.5"
+  },
+  "devDependencies": {
+    "@types/node": "^20.0.0",
+    "@types/pg": "^8.11.6",
+    "tsx": "^4.7.2",
+    "typescript": "^5.4.5"
+  }
+}

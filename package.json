@@ -1,0 +1,34 @@
+{
+  "name": "ai-zhaoshang-assistant",
+  "version": "0.1.0",
+  "private": true,
+  "description": "AI 招商抖音自动接待系统",
+  "workspaces": [
+    "apps/*",
+    "packages/*"
+  ],
+  "scripts": {
+    "api:start": "npm --workspace apps/api-service run start",
+    "api:migrate": "npm --workspace apps/api-service run migrate",
+    "api:test": "npm --workspace apps/api-service run test",
+    "api:typecheck": "npm --workspace apps/api-service run typecheck",
+    "worker:start": "npm --workspace apps/worker-service run start",
+    "worker:test": "npm --workspace apps/worker-service run test",
+    "worker:typecheck": "npm --workspace apps/worker-service run typecheck",
+    "douyin:start": "npm --workspace apps/douyin-agent run start",
+    "douyin:inspect": "npm --workspace apps/douyin-agent run inspect",
+    "douyin:capture": "npm --workspace apps/douyin-agent run capture",
+    "douyin:scan": "npm --workspace apps/douyin-agent run scan",
+    "douyin:watch": "npm --workspace apps/douyin-agent run watch",
+    "douyin:watch:once": "npm --workspace apps/douyin-agent run watch:once",
+    "dianping:ingest:file": "npm --workspace apps/dianping-agent run ingest:file",
+    "site:serve": "npm --workspace apps/ai-nav-site run serve",
+    "rag:test": "npm --workspace packages/rag run test",
+    "rag:typecheck": "npm --workspace packages/rag run typecheck",
+    "test": "npm --workspaces --if-present run test",
+    "typecheck": "npm --workspaces --if-present run typecheck"
+  },
+  "engines": {
+    "node": ">=20"
+  }
+}

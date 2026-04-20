@@ -1,0 +1,134 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>建材装修 AI 工具导航</title>
+    <meta
+      name="description"
+      content="面向建材、装修、家居、装企老板的 AI 工具导航，按效果图、选材料、算预算、管工地、做营销、接客服等真实业务场景分类。"
+    >
+    <link rel="icon" href="./assets/favicon.svg" type="image/svg+xml">
+    <link rel="stylesheet" href="./styles.css">
+  </head>
+  <body>
+    <header class="site-header">
+      <a class="brand" href="#top" aria-label="建材装修 AI 工具导航首页">
+        <span class="brand-mark">AI</span>
+        <span>
+          <strong>建材装修 AI 工具导航</strong>
+          <small>给传统老板看的实用工具清单</small>
+        </span>
+      </a>
+      <nav class="top-nav" aria-label="页面导航">
+        <a href="#tools">工具库</a>
+        <a href="#scenarios">按场景找</a>
+        <a href="#how">怎么选</a>
+      </nav>
+    </header>
+
+    <main id="top">
+      <section class="finder" aria-labelledby="finder-title">
+        <div class="finder-copy">
+          <p class="eyebrow">不用懂技术，先看能不能解决生意问题</p>
+          <h1 id="finder-title">帮建材装修老板快速找到能落地的 AI 工具</h1>
+          <p class="lead">
+            从设计出图、材料选型、预算报价，到施工管理、短视频获客、客服接待，把常用工具按真实业务场景整理清楚。
+          </p>
+        </div>
+        <div class="finder-actions" role="search">
+          <label for="searchInput">搜索工具、场景或公司</label>
+          <div class="search-row">
+            <input id="searchInput" type="search" placeholder="例如：效果图、瓷砖、预算、客服、酷家乐">
+            <button id="clearSearch" type="button">清空</button>
+          </div>
+        </div>
+      </section>
+
+      <section class="quick-values" aria-label="导航站价值点">
+        <article>
+          <img src="./assets/value-design.svg" alt="" loading="lazy">
+          <h2>先讲用途</h2>
+          <p>每个工具都写清楚适合谁、解决什么问题、上手难不难。</p>
+        </article>
+        <article>
+          <img src="./assets/value-simple.svg" alt="" loading="lazy">
+          <h2>少讲黑话</h2>
+          <p>不用 AIGC、Agent、模型这些词堆砌，直接对应出图、报价、获客、客服。</p>
+        </article>
+        <article>
+          <img src="./assets/value-decision.svg" alt="" loading="lazy">
+          <h2>方便决策</h2>
+          <p>标出免费情况、门槛和优先级，老板能先试低门槛工具。</p>
+        </article>
+      </section>
+
+      <section id="scenarios" class="scenario-strip" aria-labelledby="scenario-title">
+        <div class="section-heading">
+          <p class="eyebrow">按老板的日常问题分类</p>
+          <h2 id="scenario-title">先选你现在最想解决什么</h2>
+        </div>
+        <div id="categoryFilters" class="filter-list" aria-label="场景筛选"></div>
+      </section>
+
+      <section id="tools" class="tools-section" aria-labelledby="tools-title">
+        <div class="section-heading tools-heading">
+          <div>
+            <p class="eyebrow">首批收录工具</p>
+            <h2 id="tools-title">工具库</h2>
+          </div>
+          <div class="toolbar">
+            <label for="prioritySelect">优先级</label>
+            <select id="prioritySelect">
+              <option value="all">全部</option>
+              <option value="S">S 级：优先试</option>
+              <option value="A">A 级：值得看</option>
+              <option value="B">B 级：可补充</option>
+              <option value="C">C 级：后续观察</option>
+            </select>
+          </div>
+        </div>
+        <div id="resultSummary" class="result-summary" aria-live="polite"></div>
+        <div id="toolGrid" class="tool-grid"></div>
+      </section>
+
+      <section id="how" class="guide-section" aria-labelledby="how-title">
+        <div class="section-heading">
+          <p class="eyebrow">给导航站运营者的建议</p>
+          <h2 id="how-title">推荐这样引导客户</h2>
+        </div>
+        <div class="guide-grid">
+          <article>
+            <span>1</span>
+            <h3>先问业务痛点</h3>
+            <p>是想快点出效果图、让客户选材料、自动算预算，还是减少客服漏接？不要一上来推荐大模型。</p>
+          </article>
+          <article>
+            <span>2</span>
+            <h3>先试低门槛工具</h3>
+            <p>门店和小装企可以先试酷家乐 AI、美间、豆包、剪映、晓多这类容易理解的工具。</p>
+          </article>
+          <article>
+            <span>3</span>
+            <h3>企业工具要看流程</h3>
+            <p>ERP、客服系统、材料可视化平台要看是否能接商品库、门店流程、客服渠道和报价体系。</p>
+          </article>
+        </div>
+      </section>
+    </main>
+
+    <dialog id="toolDialog" class="tool-dialog" aria-labelledby="dialogTitle">
+      <div class="dialog-body">
+        <button id="closeDialog" class="dialog-close" type="button" aria-label="关闭">×</button>
+        <div id="dialogContent"></div>
+      </div>
+    </dialog>
+
+    <footer class="site-footer">
+      <p>资料按公开官网与导航页整理，价格和免费额度请以上线前最新官网为准。</p>
+      <span>后续可在仓库文档中继续补充工具。</span>
+    </footer>
+
+    <script src="./app.js"></script>
+  </body>
+</html>

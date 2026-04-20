@@ -1,0 +1,14 @@
+node_modules/
+dist/
+
+# Browser profiles may contain login state, cookies, and local storage.
+.browser-profile*/
+.douyin-dm-autoreply/
+
+# Local capture output may contain private-message content.
+data/captures/
+data/screenshots/
+debug/
+
+*.log
+.DS_Store

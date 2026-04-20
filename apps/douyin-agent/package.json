@@ -1,0 +1,25 @@
+{
+  "name": "douyin-dm-autoreply",
+  "version": "1.0.0",
+  "description": "Douyin Creator Center DM Reader MVP",
+  "main": "src/index.ts",
+  "scripts": {
+    "start": "tsx src/index.ts start",
+    "inspect": "tsx src/index.ts inspect",
+    "capture": "tsx src/index.ts capture",
+    "scan": "tsx src/index.ts scan",
+    "watch": "tsx src/index.ts watch",
+    "watch:once": "tsx src/index.ts watch-once",
+    "test": "tsx --test \"src/**/*.test.ts\"",
+    "typecheck": "tsc --noEmit"
+  },
+  "dependencies": {
+    "@ai-zhaoshang/shared": "0.1.0",
+    "playwright": "^1.43.0"
+  },
+  "devDependencies": {
+    "@types/node": "^20.0.0",
+    "tsx": "^4.7.2",
+    "typescript": "^5.4.5"
+  }
+}
