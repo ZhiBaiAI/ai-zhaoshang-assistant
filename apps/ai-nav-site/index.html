@@ -16,57 +16,49 @@
       <a class="brand" href="#top" aria-label="建材装修 AI 工具导航首页">
         <span class="brand-mark">AI</span>
         <span>
-          <strong>建材装修 AI 工具导航</strong>
-          <small>给传统老板看的实用工具清单</small>
+          <strong>装修 AI 工具导航</strong>
+          <small>建材、家装、家居老板都能看懂</small>
         </span>
       </a>
       <nav class="top-nav" aria-label="页面导航">
-        <a href="#tools">工具库</a>
         <a href="#scenarios">按场景找</a>
-        <a href="#how">怎么选</a>
+        <a href="#tools">工具库</a>
+        <a href="#steps">怎么开始</a>
       </nav>
     </header>
 
     <main id="top">
-      <section class="finder" aria-labelledby="finder-title">
-        <div class="finder-copy">
-          <p class="eyebrow">不用懂技术，先看能不能解决生意问题</p>
-          <h1 id="finder-title">帮建材装修老板快速找到能落地的 AI 工具</h1>
-          <p class="lead">
-            从设计出图、材料选型、预算报价，到施工管理、短视频获客、客服接待，把常用工具按真实业务场景整理清楚。
-          </p>
-        </div>
-        <div class="finder-actions" role="search">
-          <label for="searchInput">搜索工具、场景或公司</label>
-          <div class="search-row">
-            <input id="searchInput" type="search" placeholder="例如：效果图、瓷砖、预算、客服、酷家乐">
-            <button id="clearSearch" type="button">清空</button>
+      <section class="hero" aria-labelledby="hero-title">
+        <div class="hero-copy">
+          <p class="eyebrow">不用先学 AI，先解决门店和工地的问题</p>
+          <h1 id="hero-title">装修 AI 工具，按生意场景来找</h1>
+          <p class="lead">出效果图、选材料、算预算、管工地、拍短视频、接客服，每一类都挑出适合建材装修行业的工具。</p>
+          <div class="hero-actions">
+            <a class="hero-button" href="#scenarios">按场景找工具</a>
+            <a class="hero-link" href="#tools">直接看工具库</a>
           </div>
         </div>
       </section>
 
-      <section class="quick-values" aria-label="导航站价值点">
-        <article>
-          <img src="./assets/value-design.svg" alt="" loading="lazy">
-          <h2>先讲用途</h2>
-          <p>每个工具都写清楚适合谁、解决什么问题、上手难不难。</p>
-        </article>
-        <article>
-          <img src="./assets/value-simple.svg" alt="" loading="lazy">
-          <h2>少讲黑话</h2>
-          <p>不用 AIGC、Agent、模型这些词堆砌，直接对应出图、报价、获客、客服。</p>
-        </article>
-        <article>
-          <img src="./assets/value-decision.svg" alt="" loading="lazy">
-          <h2>方便决策</h2>
-          <p>标出免费情况、门槛和优先级，老板能先试低门槛工具。</p>
-        </article>
+      <section class="promise-strip" aria-label="工具选择说明">
+        <div>
+          <strong>只看能不能落地</strong>
+          <span>每个工具都说明适合谁、用来做什么。</span>
+        </div>
+        <div>
+          <strong>按业务问题分类</strong>
+          <span>不按技术名词分类，直接对应门店、销售、施工、运营。</span>
+        </div>
+        <div>
+          <strong>先试低门槛工具</strong>
+          <span>能免费试、容易上手的工具放在更前面。</span>
+        </div>
       </section>
 
       <section id="scenarios" class="scenario-strip" aria-labelledby="scenario-title">
         <div class="section-heading">
-          <p class="eyebrow">按老板的日常问题分类</p>
-          <h2 id="scenario-title">先选你现在最想解决什么</h2>
+          <p class="eyebrow">先选问题，再选工具</p>
+          <h2 id="scenario-title">你现在最想提升哪件事</h2>
         </div>
         <div id="categoryFilters" class="filter-list" aria-label="场景筛选"></div>
       </section>
@@ -74,44 +66,41 @@
       <section id="tools" class="tools-section" aria-labelledby="tools-title">
         <div class="section-heading tools-heading">
           <div>
-            <p class="eyebrow">首批收录工具</p>
-            <h2 id="tools-title">工具库</h2>
+            <p class="eyebrow">常用工具库</p>
+            <h2 id="tools-title">找到适合你团队的 AI 工具</h2>
           </div>
-          <div class="toolbar">
-            <label for="prioritySelect">优先级</label>
-            <select id="prioritySelect">
-              <option value="all">全部</option>
-              <option value="S">S 级：优先试</option>
-              <option value="A">A 级：值得看</option>
-              <option value="B">B 级：可补充</option>
-              <option value="C">C 级：后续观察</option>
-            </select>
+          <div class="finder-actions" role="search">
+            <label for="searchInput">搜索工具、公司或用途</label>
+            <div class="search-row">
+              <input id="searchInput" type="search" placeholder="例如：酷家乐、瓷砖、预算、客服">
+              <button id="clearSearch" type="button">清空</button>
+            </div>
           </div>
         </div>
         <div id="resultSummary" class="result-summary" aria-live="polite"></div>
         <div id="toolGrid" class="tool-grid"></div>
       </section>
 
-      <section id="how" class="guide-section" aria-labelledby="how-title">
+      <section id="steps" class="steps-section" aria-labelledby="steps-title">
         <div class="section-heading">
-          <p class="eyebrow">给导航站运营者的建议</p>
-          <h2 id="how-title">推荐这样引导客户</h2>
+          <p class="eyebrow">第一次用 AI 工具</p>
+          <h2 id="steps-title">从一个小场景开始</h2>
         </div>
-        <div class="guide-grid">
+        <div class="steps-grid">
           <article>
             <span>1</span>
-            <h3>先问业务痛点</h3>
-            <p>是想快点出效果图、让客户选材料、自动算预算，还是减少客服漏接？不要一上来推荐大模型。</p>
+            <h3>先拿一张真实照片试</h3>
+            <p>用门店、样板间或客户户型试效果图和选材工具，看客户是否愿意继续聊。</p>
           </article>
           <article>
             <span>2</span>
-            <h3>先试低门槛工具</h3>
-            <p>门店和小装企可以先试酷家乐 AI、美间、豆包、剪映、晓多这类容易理解的工具。</p>
+            <h3>先让一个岗位用起来</h3>
+            <p>销售先用出图，运营先用短视频，客服先用自动回复，不要一开始全公司改流程。</p>
           </article>
           <article>
             <span>3</span>
-            <h3>企业工具要看流程</h3>
-            <p>ERP、客服系统、材料可视化平台要看是否能接商品库、门店流程、客服渠道和报价体系。</p>
+            <h3>再决定是否接系统</h3>
+            <p>涉及报价、商品库、客服渠道和施工流程的工具，确认能配合现有团队再采购。</p>
           </article>
         </div>
       </section>
@@ -125,8 +114,8 @@
     </dialog>
 
     <footer class="site-footer">
-      <p>资料按公开官网与导航页整理，价格和免费额度请以上线前最新官网为准。</p>
-      <span>后续可在仓库文档中继续补充工具。</span>
+      <p>装修 AI 工具导航</p>
+      <span>工具费用、试用额度和服务范围，请以各平台官网说明为准。</span>
     </footer>
 
     <script src="./app.js"></script>

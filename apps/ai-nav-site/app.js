@@ -20,7 +20,7 @@ const tools = [
     summary: "上传房间、毛坯房或手绘图，快速生成不同装修风格效果图，也能做局部修改、家具试搭和高清升级。",
     bestFor: "家装设计师、装企销售、门店导购",
     value: "量房现场能先给客户看方向，降低沟通成本，适合拿来做谈单工具。",
-    pricing: "有免费体验和会员权益，具体额度上线前需再核验。",
+    pricing: "有免费体验和会员权益，具体额度以官网为准。",
     threshold: "低到中",
     tags: ["毛坯出图", "局部修改", "谈单"]
   },
@@ -48,7 +48,7 @@ const tools = [
     summary: "在线 2D 云设计，适合做软装搭配、提案 PPT、家装提案、海报设计，并提供智能抠图和以图搜图。",
     bestFor: "软装设计师、家居门店、运营人员",
     value: "让不会做专业排版的人也能快速做出客户看得懂的提案和活动图。",
-    pricing: "有免费素材和模板入口，企业版及版权素材需核验。",
+    pricing: "有免费素材和模板入口，企业版及版权素材以官网为准。",
     threshold: "低",
     tags: ["提案PPT", "软装", "海报"]
   },
@@ -90,7 +90,7 @@ const tools = [
     summary: "上传平面图或草图转 3D 模型，拖拽家具模型，做云渲染、VR/AR 展示。",
     bestFor: "DIY 业主、室内设计师、地产展示",
     value: "适合做快速空间表达，也适合需要英文和海外用户的业务。",
-    pricing: "官网定位免费 3D 室内设计软件，进阶权益需核验。",
+    pricing: "官网定位免费 3D 室内设计软件，进阶权益以官网为准。",
     threshold: "低到中",
     tags: ["户型转3D", "家具模型", "云渲染"]
   },
@@ -104,7 +104,7 @@ const tools = [
     summary: "提供 2D/3D 家装设计、AI Home Design、智能布局、实时渲染和模型库。",
     bestFor: "海外家居设计、跨境家居品牌",
     value: "适合做英文市场或海外客户的设计展示。",
-    pricing: "官网有 Start for Free，进阶订阅和企业方案需核验。",
+    pricing: "官网有 Start for Free，进阶订阅和企业方案以官网为准。",
     threshold: "中",
     tags: ["海外", "3D设计", "实时渲染"]
   },
@@ -118,7 +118,7 @@ const tools = [
     summary: "面向建筑和室内设计的 AI 平台，支持草图转渲染、实时生成、视频生成、自训练模型、SketchUp/Rhino 插件。",
     bestFor: "专业设计师、建筑室内表现团队",
     value: "概念阶段可以快速试不同风格，提高方案表现效率。",
-    pricing: "官网显示可免费开始，进阶套餐需核验。",
+    pricing: "官网显示可免费开始，进阶套餐以官网为准。",
     threshold: "中到高",
     tags: ["建筑表现", "SU插件", "Rhino"]
   },
@@ -215,7 +215,7 @@ const tools = [
     priority: "S",
     summary: "通用 AI 助手，能写文案、读文件、做表格分析、生成图片、联网搜索和整理资料。",
     bestFor: "老板、运营、设计师、客服主管",
-    value: "适合做方案文案、客户话术、活动策划、报价单解读和导航站内容生产。",
+    value: "适合做方案文案、客户话术、活动策划、报价单解读和营销内容生产。",
     pricing: "官网显示有 Free，Plus、Pro、Business 等付费版。",
     threshold: "低",
     tags: ["写文案", "读文件", "资料整理"]
@@ -244,7 +244,7 @@ const tools = [
     summary: "擅长长文本和文件阅读，可做联网搜索、资料摘要、文档问答、PPT/表格相关工作。",
     bestFor: "市场、老板、资料整理人员",
     value: "适合读取品牌手册、施工规范、合同和竞品网页，快速整理成老板能看的结论。",
-    pricing: "有免费入口，会员/API 需核验。",
+    pricing: "有免费入口，会员/API 以官网为准。",
     threshold: "低",
     tags: ["长文档", "搜索", "总结"]
   },
@@ -258,7 +258,7 @@ const tools = [
     summary: "阿里旗下全能 AI 助手，适合中文问答、写作、办公、图片理解和生态对接。",
     bestFor: "建材电商、运营、客服主管",
     value: "适合做产品详情页、直播脚本、客服话术、表格清单和阿里生态业务。",
-    pricing: "有免费入口，企业/API 需核验。",
+    pricing: "有免费入口，企业/API 以官网为准。",
     threshold: "低",
     tags: ["中文办公", "电商", "话术"]
   },
@@ -272,7 +272,7 @@ const tools = [
     summary: "支持 AI 写作、翻译、文档、搜索、图像生成，适合抖音和剪映生态内容生产。",
     bestFor: "短视频运营、小红书运营、老板助理",
     value: "能快速产出装修避坑文案、短视频分镜、门店活动文案和客户沟通话术。",
-    pricing: "有免费入口，付费权益需核验。",
+    pricing: "有免费入口，付费权益以官网为准。",
     threshold: "低",
     tags: ["抖音", "文案", "图像"]
   },
@@ -300,7 +300,7 @@ const tools = [
     summary: "中文模板设计平台，支持海报、电商图、抠图、商品图和营销图制作。",
     bestFor: "建材门店、电商运营、活动策划",
     value: "适合快速做朋友圈海报、主图、促销图和门店物料。",
-    pricing: "免费加会员模式，商用素材需核验。",
+    pricing: "免费加会员模式，商用素材以官网为准。",
     threshold: "低",
     tags: ["中文模板", "电商图", "抠图"]
   },
@@ -314,7 +314,7 @@ const tools = [
     summary: "AI 图片和视频生成工具，支持文生图、图生图、图生视频等创意能力。",
     bestFor: "短视频运营、设计师、品牌营销",
     value: "适合做装修风格图、短视频封面、空间氛围短片和产品场景图。",
-    pricing: "免费/积分/会员权益需核验。",
+    pricing: "免费/积分/会员权益以官网为准。",
     threshold: "低",
     tags: ["AI图片", "AI视频", "封面"]
   },
@@ -342,7 +342,7 @@ const tools = [
     summary: "AI 视频、图片生成和图生视频工具，适合生成视觉素材和短片。",
     bestFor: "品牌营销、短视频运营",
     value: "可用于装修案例短视频、产品场景动画和活动视频素材。",
-    pricing: "免费/会员/积分需核验。",
+    pricing: "免费/会员/积分以官网为准。",
     threshold: "低",
     tags: ["AI视频", "场景动画", "素材"]
   },
@@ -356,7 +356,7 @@ const tools = [
     summary: "上传房间照片，一键生成不同主题的房间改造效果图。",
     bestFor: "业主自测、设计灵感、社媒内容",
     value: "简单快，适合用作灵感工具，不适合直接替代专业落地方案。",
-    pricing: "公开页可直接试用，具体额度需核验。",
+    pricing: "公开页可直接试用，具体额度以官网为准。",
     threshold: "低",
     tags: ["灵感图", "房间改造", "快速"]
   },
@@ -370,7 +370,7 @@ const tools = [
     summary: "支持把 PNG、JPG、PDF、DWG、DXF 等户型或蓝图转换为 3D 模型，也有自动家具布置和估算工具。",
     bestFor: "DIY 业主、海外设计内容、设计教育",
     value: "适合英文场景和户型转 3D 的补充工具。",
-    pricing: "有免费试用，完整功能需订阅核验。",
+    pricing: "有免费试用，完整功能需订阅。",
     threshold: "中",
     tags: ["蓝图转3D", "海外", "户型"]
   },
@@ -384,7 +384,7 @@ const tools = [
     summary: "室内和外立面 AI 改造，照片转方案，也提供建筑 GPT 对话建议。",
     bestFor: "业主灵感、外立面和庭院初稿",
     value: "适合快速生成改造方向，用作设计沟通前的参考。",
-    pricing: "官网显示可免费开始，实际额度需核验。",
+    pricing: "官网显示可免费开始，实际额度以官网为准。",
     threshold: "低",
     tags: ["外立面", "庭院", "灵感"]
   },
@@ -420,7 +420,6 @@ const tools = [
 
 const state = {
   category: "all",
-  priority: "all",
   query: ""
 };
 
@@ -428,7 +427,6 @@ const categoryFilters = document.querySelector("#categoryFilters");
 const toolGrid = document.querySelector("#toolGrid");
 const searchInput = document.querySelector("#searchInput");
 const clearSearch = document.querySelector("#clearSearch");
-const prioritySelect = document.querySelector("#prioritySelect");
 const resultSummary = document.querySelector("#resultSummary");
 const dialog = document.querySelector("#toolDialog");
 const dialogContent = document.querySelector("#dialogContent");
@@ -457,6 +455,15 @@ function categoryLabel(id) {
   return categories.find((item) => item.id === id)?.label || id;
 }
 
+function fitLabel(priority) {
+  return {
+    S: "优先试",
+    A: "进阶工具",
+    B: "备选工具",
+    C: "了解一下"
+  }[priority] || "可了解";
+}
+
 function renderFilters() {
   const counts = categories.reduce((acc, category) => {
     acc[category.id] =
@@ -482,7 +489,6 @@ function getFilteredTools() {
 
   return tools
     .filter((tool) => state.category === "all" || tool.category.includes(state.category))
-    .filter((tool) => state.priority === "all" || tool.priority === state.priority)
     .filter((tool) => {
       if (!query) return true;
       const haystack = [
@@ -508,7 +514,7 @@ function getFilteredTools() {
 
 function renderTools() {
   const filtered = getFilteredTools();
-  resultSummary.textContent = `当前显示 ${filtered.length} 个工具。S 级适合优先试用，企业工具上线前建议再核验价格和服务范围。`;
+  resultSummary.textContent = `当前显示 ${filtered.length} 个工具。可以先从“优先试”的工具开始，再看需要接入团队流程的工具。`;
 
   if (!filtered.length) {
     toolGrid.innerHTML = `<div class="empty-state">没有找到匹配工具。可以换一个关键词，例如“效果图”“预算”“客服”。</div>`;
@@ -525,7 +531,7 @@ function renderTools() {
               <h3>${tool.name}</h3>
               <small>${tool.company}</small>
             </div>
-            <span class="priority priority-${tool.priority}" aria-label="${tool.priority} 级">${tool.priority}</span>
+            <span class="fit-badge">${fitLabel(tool.priority)}</span>
           </div>
           <div class="tag-row">
             ${tool.category.map((id) => `<span class="tag">${categoryLabel(id)}</span>`).join("")}
@@ -554,7 +560,7 @@ function renderDialog(tool) {
     <div class="dialog-head">
       <img src="${logoData(tool.name, tool.priority)}" alt="${tool.name} 图标">
       <div>
-        <p class="eyebrow">${tool.priority} 级 · ${tool.category.map(categoryLabel).join(" / ")}</p>
+        <p class="eyebrow">${fitLabel(tool.priority)} · ${tool.category.map(categoryLabel).join(" / ")}</p>
         <h2 id="dialogTitle">${tool.name}</h2>
         <p>${tool.company}</p>
       </div>
@@ -576,7 +582,7 @@ function renderDialog(tool) {
       <ul class="dialog-list">
         <li>免费/价格：${tool.pricing}</li>
         <li>上手门槛：${tool.threshold}</li>
-        <li>上线导航站前建议重新核验价格、商用版权和最新功能。</li>
+        <li>正式采购前，建议查看官网的服务范围、商用版权和最新套餐。</li>
       </ul>
     </div>
     <div class="dialog-section">
@@ -614,11 +620,6 @@ clearSearch.addEventListener("click", () => {
   searchInput.value = "";
   renderTools();
   searchInput.focus();
-});
-
-prioritySelect.addEventListener("change", (event) => {
-  state.priority = event.target.value;
-  renderTools();
 });
 
 closeDialog.addEventListener("click", () => dialog.close());
