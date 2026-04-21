@@ -727,8 +727,16 @@ button:hover {
   }
 
   .tool-row {
-    gap: 10px;
+    grid-template-columns: minmax(0, 1fr) auto;
+    grid-template-rows: auto;
+    align-items: start;
+    column-gap: 10px;
+    row-gap: 0;
     padding: 12px;
+  }
+
+  .tool-main {
+    gap: 9px;
   }
 
   .tool-head {
@@ -743,8 +751,8 @@ button:hover {
   }
 
   .tool-title-line {
-    display: grid;
-    gap: 5px;
+    display: flex;
+    gap: 6px;
   }
 
   .tool-title h3 {
@@ -768,8 +776,9 @@ button:hover {
   }
 
   .tool-card-bottom {
-    gap: 9px;
-    padding-top: 9px;
+    align-self: start;
+    border-top: 0;
+    padding-top: 0;
   }
 
   .tool-card-bottom .tag-row {
@@ -777,17 +786,17 @@ button:hover {
   }
 
   .tool-actions {
-    display: flex;
-    justify-content: flex-start;
-    gap: 8px;
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 6px;
   }
 
   .primary-link,
   .secondary-button {
-    width: auto;
+    width: 52px;
     min-height: 32px;
-    padding: 0 12px;
-    font-size: 13px;
+    padding: 0;
+    font-size: 12px;
   }
 
   .site-footer {
