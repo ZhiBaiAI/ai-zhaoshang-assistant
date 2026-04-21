@@ -14,32 +14,42 @@
   <body>
     <header class="site-header">
       <a class="brand" href="#top" aria-label="装修商家 AI 选型指南首页">
-        <span class="brand-mark">AI</span>
+        <span class="brand-mark" aria-hidden="true">
+          <span></span><span></span><span></span><span></span>
+        </span>
         <span>
           <strong>装修商家 AI 工具库</strong>
-          <small>建材、家装、家居商家的实用参考</small>
+          <small>按业务问题选工具</small>
         </span>
       </a>
       <nav class="top-nav" aria-label="页面导航">
-        <a href="#scenarios">按场景找</a>
-        <a href="#tools">查看工具</a>
-        <a href="#steps">开始使用</a>
+        <a href="#tools">搜索</a>
+        <a href="#scenarios">场景</a>
+        <a href="#steps">落地顺序</a>
       </nav>
     </header>
 
     <main id="top">
       <section id="tools" class="catalog" aria-labelledby="tools-title">
         <div class="catalog-head">
-          <div>
+          <div class="catalog-copy">
             <p class="eyebrow">装修行业 AI 工具</p>
-            <h1 id="tools-title">按经营场景找工具。</h1>
-            <p class="lead">面向家装公司、建材门店、瓷砖卫浴、定制家居、软装工作室和短视频获客团队。</p>
+            <h1 id="tools-title">搜索你现在要解决的问题</h1>
+            <p class="lead">输入工具名、材料品类或经营场景，快速筛出适合门店、装企和获客团队的 AI 工具。</p>
           </div>
-          <div class="finder-actions" role="search">
+          <div class="finder-actions" role="search" aria-label="工具搜索">
             <label for="searchInput">搜索工具、公司或用途</label>
-            <div class="search-row">
+            <div class="search-row" id="searchBox">
+              <span class="search-icon" aria-hidden="true"></span>
               <input id="searchInput" type="search" placeholder="例如：酷家乐、瓷砖、预算、客服">
-              <button id="clearSearch" type="button">清空</button>
+              <button id="clearSearch" type="button" hidden>清空</button>
+            </div>
+            <div class="quick-searches" aria-label="常用搜索">
+              <button type="button" data-suggestion="效果图">效果图</button>
+              <button type="button" data-suggestion="瓷砖">瓷砖</button>
+              <button type="button" data-suggestion="预算">预算</button>
+              <button type="button" data-suggestion="客服">客服</button>
+              <button type="button" data-suggestion="短视频">短视频</button>
             </div>
           </div>
         </div>

@@ -431,13 +431,14 @@ const resultSummary = document.querySelector("#resultSummary");
 const dialog = document.querySelector("#toolDialog");
 const dialogContent = document.querySelector("#dialogContent");
 const closeDialog = document.querySelector("#closeDialog");
+const quickSearches = document.querySelector(".quick-searches");
 
 function logoData(name, priority) {
   const colors = {
-    S: ["#0f6b5d", "#dcece8"],
-    A: ["#2f69a8", "#e2edf8"],
-    B: ["#b88400", "#f5ebc7"],
-    C: ["#c8503d", "#fae6e1"]
+    S: ["#0b57d0", "#e8f0fe"],
+    A: ["#188038", "#e6f4ea"],
+    B: ["#b06000", "#fef7e0"],
+    C: ["#d93025", "#fce8e6"]
   };
   const [ink, bg] = colors[priority] || colors.B;
   const initials = Array.from(name.replace(/\s+/g, "")).slice(0, 2).join("");
@@ -464,15 +465,43 @@ function fitLabel(priority) {
   }[priority] || "可了解";
 }
 
+function syncSearchControls() {
+  clearSearch.hidden = !state.query.trim();
+}
+
 function renderFilters() {
+  const visibleTools = tools.filter((tool) => {
+    const query = state.query.trim().toLowerCase();
+    if (!query) return true;
+    return [
+      tool.name,
+      tool.company,
+      tool.summary,
+      tool.bestFor,
+      tool.value,
+      tool.pricing,
+      tool.threshold,
+      ...tool.tags,
+      ...tool.category.map(categoryLabel)
+    ]
+      .join(" ")
+      .toLowerCase()
+      .includes(query);
+  });
+
   categoryFilters.innerHTML = categories
-    .map(
-      (category) => `
+    .map((category) => {
+      const count =
+        category.id === "all"
+          ? visibleTools.length
+          : visibleTools.filter((tool) => tool.category.includes(category.id)).length;
+
+      return `
         <button class="filter-chip ${state.category === category.id ? "active" : ""}" data-category="${category.id}" type="button">
-          ${category.label}<span>${category.short}</span>
+          ${category.label}<span>${count}</span>
         </button>
-      `
-    )
+      `;
+    })
     .join("");
 }
 
@@ -506,6 +535,7 @@ function getFilteredTools() {
 
 function renderTools() {
   const filtered = getFilteredTools();
+  syncSearchControls();
   resultSummary.textContent = `已为你整理 ${filtered.length} 个可参考工具。建议先看适合自己团队阶段的产品。`;
 
   if (!filtered.length) {
@@ -615,12 +645,24 @@ toolGrid.addEventListener("click", (event) => {
 
 searchInput.addEventListener("input", (event) => {
   state.query = event.target.value;
+  renderFilters();
   renderTools();
 });
 
 clearSearch.addEventListener("click", () => {
   state.query = "";
   searchInput.value = "";
+  renderFilters();
+  renderTools();
+  searchInput.focus();
+});
+
+quickSearches.addEventListener("click", (event) => {
+  const button = event.target.closest("[data-suggestion]");
+  if (!button) return;
+  state.query = button.dataset.suggestion;
+  searchInput.value = state.query;
+  renderFilters();
   renderTools();
   searchInput.focus();
 });
