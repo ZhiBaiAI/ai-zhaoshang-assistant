@@ -500,7 +500,7 @@ function renderTools() {
   toolGrid.innerHTML = filtered
     .map(
       (tool) => `
-        <article class="tool-row">
+        <article class="tool-row" data-index="${tools.indexOf(tool)}" role="button" tabindex="0" aria-label="查看 ${tool.name} 详情">
           <div class="tool-main">
             <div class="tool-head">
               <img class="tool-logo" src="${logoData(tool.name, tool.priority)}" alt="${tool.name} 图标" loading="lazy">
@@ -518,11 +518,8 @@ function renderTools() {
             <div class="tag-row">
               ${tool.category.slice(0, 2).map((id) => `<span class="tag">${categoryLabel(id)}</span>`).join("")}
             </div>
-            <div class="tool-actions">
-              <button class="secondary-button" type="button" data-index="${tools.indexOf(tool)}">详情</button>
-              <a class="primary-link" href="${tool.url}" target="_blank" rel="noreferrer">官网</a>
-            </div>
           </div>
+          <span class="card-arrow" aria-hidden="true">›</span>
         </article>
       `
     )
@@ -579,9 +576,17 @@ categoryFilters.addEventListener("click", (event) => {
 });
 
 toolGrid.addEventListener("click", (event) => {
-  const button = event.target.closest("[data-index]");
-  if (!button) return;
-  renderDialog(tools[Number(button.dataset.index)]);
+  const card = event.target.closest("[data-index]");
+  if (!card) return;
+  renderDialog(tools[Number(card.dataset.index)]);
+});
+
+toolGrid.addEventListener("keydown", (event) => {
+  if (event.key !== "Enter" && event.key !== " ") return;
+  const card = event.target.closest("[data-index]");
+  if (!card) return;
+  event.preventDefault();
+  renderDialog(tools[Number(card.dataset.index)]);
 });
 
 closeDialog.addEventListener("click", () => dialog.close());

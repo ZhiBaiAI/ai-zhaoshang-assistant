@@ -318,6 +318,7 @@ button:hover {
   background: var(--surface);
   padding: 14px;
   box-shadow: 0 1px 2px rgba(60, 64, 67, 0.06);
+  cursor: pointer;
   animation: fade-up 320ms ease both;
   isolation: isolate;
   transition:
@@ -346,6 +347,11 @@ button:hover {
 
 .tool-row:hover::before {
   opacity: 1;
+}
+
+.tool-row:focus-visible {
+  outline: 3px solid rgba(26, 115, 232, 0.22);
+  outline-offset: 2px;
 }
 
 .tool-main {
@@ -478,6 +484,33 @@ button:hover {
   gap: 12px;
   border-top: 1px solid var(--line);
   padding-top: 10px;
+}
+
+.card-arrow {
+  position: absolute;
+  top: 15px;
+  right: 14px;
+  display: grid;
+  place-items: center;
+  width: 24px;
+  height: 24px;
+  border-radius: 8px;
+  color: var(--blue-strong);
+  font-size: 24px;
+  line-height: 1;
+  opacity: 0;
+  transform: translateX(-4px);
+  transition:
+    background 0.28s var(--ease-smooth),
+    opacity 0.28s var(--ease-smooth),
+    transform 0.28s var(--ease-smooth);
+}
+
+.tool-row:hover .card-arrow,
+.tool-row:focus-visible .card-arrow {
+  background: var(--surface-tint);
+  opacity: 1;
+  transform: translateX(0);
 }
 
 .tool-actions {
@@ -742,7 +775,7 @@ button:hover {
   }
 
   .tool-row {
-    grid-template-columns: minmax(0, 1fr) auto;
+    grid-template-columns: minmax(0, 1fr) 28px;
     grid-template-rows: auto;
     align-items: start;
     column-gap: 10px;
@@ -791,7 +824,7 @@ button:hover {
   }
 
   .tool-card-bottom {
-    align-self: start;
+    grid-column: 1 / -1;
     border-top: 0;
     padding-top: 0;
   }
@@ -800,18 +833,15 @@ button:hover {
     display: none;
   }
 
-  .tool-actions {
-    display: grid;
-    grid-template-columns: 1fr;
-    gap: 6px;
-  }
-
-  .primary-link,
-  .secondary-button {
-    width: 52px;
-    min-height: 32px;
-    padding: 0;
-    font-size: 12px;
+  .card-arrow {
+    position: static;
+    width: 28px;
+    height: 28px;
+    margin-top: 2px;
+    background: var(--surface-tint);
+    font-size: 26px;
+    opacity: 1;
+    transform: none;
   }
 
 }
