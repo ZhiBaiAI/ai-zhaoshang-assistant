@@ -67,6 +67,48 @@ const tools = [
     tags: ["瓷砖", "地板", "涂料", "展厅"]
   },
   {
+    name: "图销AI",
+    company: "图销AI",
+    domain: "tuxiao.cc",
+    url: "https://tuxiao.cc/",
+    category: ["design", "materials", "service"],
+    priority: "S",
+    summary: "面向建材家居商家的 AI 导购效率工具，支持毛坯设计、软装换搭、风格模仿、客户管理和团队管理。",
+    bestFor: "建材门店、家具软装、瓷砖地板、家居导购团队",
+    value: "门店现场可以快速给客户看效果图，同时沉淀客户需求和跟进记录，适合导购锁客。",
+    pricing: "官网以扫码咨询和企业服务为主，价格需咨询。",
+    threshold: "低到中",
+    tags: ["建材导购", "现场出图", "客户管理"]
+  },
+  {
+    name: "AI室内大师",
+    company: "AI室内大师",
+    domain: "ai-houses.com",
+    url: "https://www.ai-houses.com/",
+    category: ["design", "materials"],
+    priority: "S",
+    summary: "上传现场照片或户型图，一键生成全屋室内装修方案，并提供风格修改、家具材质替换、照明调整等工具。",
+    bestFor: "室内设计师、装企销售、家居门店",
+    value: "适合在客户还没确定风格时快速出多版方向图，让沟通从抽象描述变成看图选择。",
+    pricing: "官网提供在线使用入口，免费额度和付费套餐以官方页面为准。",
+    threshold: "低",
+    tags: ["室内出图", "换风格", "户型图"]
+  },
+  {
+    name: "建筑学长",
+    company: "建筑学长",
+    domain: "jianzhuxuezhang.com",
+    url: "https://www.jianzhuxuezhang.com/",
+    category: ["design", "materials"],
+    priority: "A",
+    summary: "面向建筑、室内、景观设计师的 AI 绘图与渲染平台，支持文字、草图、底图、SU/CAD 截图生成效果图。",
+    bestFor: "建筑设计师、室内设计师、设计院、设计学生",
+    value: "适合方案早期快速做意向图、材质表达和多风格比稿，也能作为专业设计团队的灵感工具。",
+    pricing: "基础功能可免费使用，高级功能、课程和插件等以官方为准。",
+    threshold: "中",
+    tags: ["建筑渲染", "草图出图", "SU/CAD"]
+  },
+  {
     name: "晓多 AI-Agent",
     company: "晓多科技",
     domain: "xiaoduoai.com",
@@ -207,6 +249,51 @@ const tools = [
     tags: ["私信获客", "留资", "短视频"]
   },
   {
+    name: "客源星球",
+    company: "江西一客软件科技",
+    domain: "App Store / 应用商店",
+    url: "",
+    access: "请在手机应用商店搜索“客源星球”下载使用。",
+    category: ["marketing"],
+    priority: "A",
+    summary: "AI 拓客获客 App，支持全网获客、地图拓客、附近企业、企业专区、精准客源和批量导出。",
+    bestFor: "建材经销商、装企销售、电销团队、地推团队",
+    value: "适合找本地商家、楼盘周边企业或泛 B 端客户，用来补充电话销售和地推线索池。",
+    pricing: "App Store 显示免费，部分高级功能以 App 内实际套餐为准。",
+    threshold: "中",
+    tags: ["拓客", "地图采集", "线索导出"]
+  },
+  {
+    name: "绿建管家",
+    company: "湖北中万信息科技",
+    domain: "App Store / 应用商店",
+    url: "",
+    access: "请在手机应用商店搜索“绿建管家”下载使用。",
+    category: ["marketing", "service", "project"],
+    priority: "A",
+    summary: "面向建筑建材、钢材、涂料、装修材料行业的获客外呼和客户管理 App，包含精准获客、智能外呼、CRM 等能力。",
+    bestFor: "建材厂家、经销商、工程材料销售、装修材料门店",
+    value: "更偏行业垂直获客和销售管理，适合有外呼、客户池和项目线索跟进需求的团队。",
+    pricing: "应用商店显示免费并含 App 内购买，企业版价格以 App 内为准。",
+    threshold: "中到高",
+    tags: ["建材获客", "智能外呼", "CRM"]
+  },
+  {
+    name: "装企客源引擎",
+    company: "宁夏乾方策网络",
+    domain: "App Store / 应用商店",
+    url: "",
+    access: "请在手机应用商店搜索“装企客源引擎”下载使用。",
+    category: ["marketing", "service"],
+    priority: "B",
+    summary: "面向装修公司、家居建材行业的营销裂变获客 App，主打业主裂变、品牌推广和家居建材获客推广。",
+    bestFor: "装企老板、整装公司、全屋定制、家居建材门店",
+    value: "适合把线上活动、品牌推广和客户裂变放到一个移动端工具里做，尤其适合本地装企获客。",
+    pricing: "App Store 显示免费，实际服务和增值功能以 App 内为准。",
+    threshold: "中",
+    tags: ["装企获客", "裂变", "推广"]
+  },
+  {
     name: "ChatGPT",
     company: "OpenAI",
     domain: "openai.com",
@@ -333,6 +420,34 @@ const tools = [
     tags: ["短视频", "字幕", "模板"]
   },
   {
+    name: "开拍",
+    company: "美图",
+    domain: "kaipai.com",
+    url: "https://www.kaipai.com/",
+    category: ["marketing"],
+    priority: "S",
+    summary: "AI 口播营销视频工具，支持一句话或一张图制作达人营销视频，也有脚本、字幕、剪辑、去水印、画质修复等能力。",
+    bestFor: "门店老板、短视频运营、建材家居销售、直播带货团队",
+    value: "适合把产品卖点、门店活动和装修案例快速做成口播短视频，降低老板自己出镜和剪辑门槛。",
+    pricing: "官网和 App 均可使用，免费额度、会员和 App 内购买以官方为准。",
+    threshold: "低",
+    tags: ["口播视频", "实体引流", "AI脚本"]
+  },
+  {
+    name: "说得AI",
+    company: "杭州盖视科技",
+    domain: "shuodeai.com",
+    url: "https://www.shuodeai.com/",
+    category: ["marketing"],
+    priority: "A",
+    summary: "编、拍、演、剪全流程的 AI 口播创作平台，支持数字人、提词器、智能文案、文案提取和智能剪辑。",
+    bestFor: "短视频运营、门店老板、招商获客、电商带货",
+    value: "适合做产品讲解、老板口播、活动视频和批量广告素材，也能用数字人减少真人出镜压力。",
+    pricing: "官网提供 App 下载和工作台入口，免费与会员权益以官方为准。",
+    threshold: "低到中",
+    tags: ["数字人", "提词器", "口播"]
+  },
+  {
     name: "可灵 AI",
     company: "快手",
     domain: "kuaishou.com",
@@ -387,6 +502,20 @@ const tools = [
     pricing: "官网显示可免费开始，实际额度以官网为准。",
     threshold: "低",
     tags: ["外立面", "庭院", "灵感"]
+  },
+  {
+    name: "DecorMatters",
+    company: "DecorMatters",
+    domain: "decormatters.com",
+    url: "https://decormatters.com/",
+    category: ["design", "materials"],
+    priority: "B",
+    summary: "AI 家居设计 App，支持上传真实房间、尝试不同家具和色彩、AI 改造、AR 预览和设计灵感社区。",
+    bestFor: "软装搭配、海外家居内容、家具选型、电商种草",
+    value: "适合需要移动端灵感、家具搭配和海外风格参考的团队，也能辅助做社媒内容。",
+    pricing: "App 可免费下载，含 App 内购买和会员权益。",
+    threshold: "低",
+    tags: ["家居App", "AR预览", "软装"]
   },
   {
     name: "云装天下 ERP",
@@ -529,6 +658,11 @@ function renderMobileGroups() {
 }
 
 function renderDialog(tool) {
+  const accessNote = tool.access || `请在手机应用商店搜索“${tool.name}”下载使用。`;
+  const actionBlock = tool.url
+    ? `<a class="primary-link" href="${tool.url}" target="_blank" rel="noreferrer">打开官网</a>`
+    : `<p class="access-note">${accessNote}</p>`;
+
   dialogContent.innerHTML = `
     <div class="dialog-head">
       <p class="eyebrow">${tool.category.map(categoryLabel).join(" / ")}</p>
@@ -552,11 +686,11 @@ function renderDialog(tool) {
       <ul class="dialog-list">
         <li>免费/价格：${tool.pricing}</li>
         <li>上手门槛：${tool.threshold}</li>
-        <li>正式采购前，建议查看官网的服务范围、商用版权和最新套餐。</li>
+        <li>${tool.url ? "正式采购前，建议查看官网的服务范围、商用版权和最新套餐。" : "正式使用前，建议先在应用商店查看最新版本、套餐和隐私说明。"}</li>
       </ul>
     </div>
     <div class="dialog-section">
-      <a class="primary-link" href="${tool.url}" target="_blank" rel="noreferrer">打开官网</a>
+      ${actionBlock}
     </div>
   `;
   dialog.showModal();

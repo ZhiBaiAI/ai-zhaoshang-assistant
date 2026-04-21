@@ -491,6 +491,17 @@ p {
   transform: translateY(-1px);
 }
 
+.access-note {
+  display: inline-block;
+  margin: 0;
+  border-radius: 8px;
+  background: var(--primary-soft);
+  color: var(--primary-dark);
+  font-size: 14px;
+  font-weight: 700;
+  padding: 10px 12px;
+}
+
 .empty-state {
   border: 1px dashed var(--line-strong);
   background: transparent;
