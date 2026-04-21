@@ -664,13 +664,14 @@ button:hover {
   }
 
   main {
-    width: calc(100% - 24px);
+    width: calc(100% - 20px);
     max-width: 1180px;
-    padding-top: 22px;
+    padding-top: 16px;
   }
 
   h1 {
-    font-size: 32px;
+    margin-bottom: 8px;
+    font-size: 28px;
   }
 
   h2 {
@@ -678,69 +679,123 @@ button:hover {
   }
 
   .lead {
-    font-size: 15px;
+    font-size: 14px;
+    line-height: 1.45;
   }
 
   .catalog-head {
-    gap: 18px;
-    padding-top: 8px;
+    gap: 10px;
+    padding-top: 4px;
   }
 
   .filter-list {
-    justify-content: flex-start;
-    flex-wrap: nowrap;
-    overflow-x: auto;
-    scrollbar-width: none;
-  }
-
-  .filter-list::-webkit-scrollbar {
-    display: none;
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 6px;
+    overflow: visible;
   }
 
   .filter-wrap {
-    overflow: hidden;
+    overflow: visible;
+    padding-top: 0;
   }
 
   .filter-chip {
-    flex: 0 0 auto;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 0;
+    min-height: 34px;
+    padding: 0 6px;
+    overflow: hidden;
+    font-size: 13px;
+    white-space: nowrap;
+  }
+
+  .filter-chip span {
+    margin-left: 3px;
+    font-size: 11px;
+  }
+
+  .result-summary {
+    min-height: 22px;
+    font-size: 12px;
+  }
+
+  .tool-grid {
+    gap: 10px;
   }
 
   .tool-row {
-    padding: 16px;
+    gap: 10px;
+    padding: 12px;
   }
 
   .tool-head {
     align-items: flex-start;
+    gap: 9px;
   }
 
   .tool-logo {
-    width: 44px;
-    height: 44px;
+    width: 36px;
+    height: 36px;
+    padding: 5px;
   }
 
   .tool-title-line {
     display: grid;
-    gap: 7px;
+    gap: 5px;
+  }
+
+  .tool-title h3 {
+    font-size: 18px;
+  }
+
+  .tool-title small {
+    font-size: 12px;
   }
 
   .fit-badge {
     width: fit-content;
+    padding: 3px 7px;
+    font-size: 11px;
+  }
+
+  .tool-summary {
+    font-size: 14px;
+    line-height: 1.45;
+    -webkit-line-clamp: 2;
+  }
+
+  .tool-card-bottom {
+    gap: 9px;
+    padding-top: 9px;
+  }
+
+  .tool-card-bottom .tag-row {
+    display: none;
   }
 
   .tool-actions {
-    display: grid;
-    grid-template-columns: 1fr;
+    display: flex;
+    justify-content: flex-start;
+    gap: 8px;
   }
 
   .primary-link,
   .secondary-button {
-    width: 100%;
+    width: auto;
+    min-height: 32px;
+    padding: 0 12px;
+    font-size: 13px;
   }
 
   .site-footer {
     display: grid;
-    width: calc(100% - 24px);
+    width: calc(100% - 20px);
     max-width: 1180px;
+    padding-top: 18px;
+    font-size: 12px;
   }
 }
 

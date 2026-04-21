@@ -519,8 +519,8 @@ function renderTools() {
               ${tool.category.slice(0, 2).map((id) => `<span class="tag">${categoryLabel(id)}</span>`).join("")}
             </div>
             <div class="tool-actions">
-              <button class="secondary-button" type="button" data-index="${tools.indexOf(tool)}">看详情</button>
-              <a class="primary-link" href="${tool.url}" target="_blank" rel="noreferrer">访问官网</a>
+              <button class="secondary-button" type="button" data-index="${tools.indexOf(tool)}">详情</button>
+              <a class="primary-link" href="${tool.url}" target="_blank" rel="noreferrer">官网</a>
             </div>
           </div>
         </article>
