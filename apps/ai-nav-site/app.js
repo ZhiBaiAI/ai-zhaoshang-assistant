@@ -490,7 +490,7 @@ function getFilteredTools() {
 function renderTools() {
   const filtered = getFilteredTools();
   const activeLabel = categoryLabel(state.category);
-  resultSummary.textContent = `当前分类：${activeLabel}，共 ${filtered.length} 个工具。建议先看“适合起步”的产品。`;
+  resultSummary.textContent = `${activeLabel} · ${filtered.length} 个工具`;
 
   if (!filtered.length) {
     toolGrid.innerHTML = `<div class="empty-state">这个分类暂时没有工具。可以先查看其他经营场景。</div>`;
