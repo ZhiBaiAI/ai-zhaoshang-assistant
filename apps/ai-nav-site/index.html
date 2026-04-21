@@ -3,62 +3,66 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>建材装修 AI 工具导航</title>
+    <title>装修商家 AI 选型指南</title>
     <meta
       name="description"
-      content="面向建材、装修、家居、装企老板的 AI 工具导航，按效果图、选材料、算预算、管工地、做营销、接客服等真实业务场景分类。"
+      content="面向建材、装修、家居、装企老板的 AI 选型指南，按效果图、选材料、预算、施工、营销、客服等经营场景整理。"
     >
     <link rel="icon" href="./assets/favicon.svg" type="image/svg+xml">
     <link rel="stylesheet" href="./styles.css">
   </head>
   <body>
     <header class="site-header">
-      <a class="brand" href="#top" aria-label="建材装修 AI 工具导航首页">
+      <a class="brand" href="#top" aria-label="装修商家 AI 选型指南首页">
         <span class="brand-mark">AI</span>
         <span>
-          <strong>装修 AI 工具导航</strong>
-          <small>建材、家装、家居老板都能看懂</small>
+          <strong>装修商家 AI 选型指南</strong>
+          <small>给建材、家装、家居商家的实用参考</small>
         </span>
       </a>
       <nav class="top-nav" aria-label="页面导航">
+        <a href="#why">先看方向</a>
         <a href="#scenarios">按场景找</a>
-        <a href="#tools">工具库</a>
-        <a href="#steps">怎么开始</a>
+        <a href="#tools">查看工具</a>
       </nav>
     </header>
 
     <main id="top">
       <section class="hero" aria-labelledby="hero-title">
         <div class="hero-copy">
-          <p class="eyebrow">不用先学 AI，先解决门店和工地的问题</p>
-          <h1 id="hero-title">装修 AI 工具，按生意场景来找</h1>
-          <p class="lead">出效果图、选材料、算预算、管工地、拍短视频、接客服，每一类都挑出适合建材装修行业的工具。</p>
+          <p class="eyebrow">先看经营结果，不先看技术名词</p>
+          <h1 id="hero-title">让门店更好成交，让团队更快运转。</h1>
+          <p class="lead">把适合装修行业的 AI 工具，按出图、选材、预算、施工、营销、客服几类经营场景整理清楚。</p>
           <div class="hero-actions">
-            <a class="hero-button" href="#scenarios">按场景找工具</a>
-            <a class="hero-link" href="#tools">直接看工具库</a>
+            <a class="hero-button" href="#scenarios">按场景挑工具</a>
+            <a class="hero-link" href="#tools">直接浏览</a>
           </div>
         </div>
       </section>
 
-      <section class="promise-strip" aria-label="工具选择说明">
+      <section id="why" class="promise-strip" aria-label="选型原则">
         <div>
-          <strong>只看能不能落地</strong>
-          <span>每个工具都说明适合谁、用来做什么。</span>
+          <strong>先解决成交问题</strong>
+          <span>优先看效果图、选材展示、报价和客户沟通这些能直接影响成交的环节。</span>
         </div>
         <div>
-          <strong>按业务问题分类</strong>
-          <span>不按技术名词分类，直接对应门店、销售、施工、运营。</span>
+          <strong>先从一个岗位开始</strong>
+          <span>销售先用出图，客服先用自动回复，运营先用内容工具，不必一开始全公司一起上。</span>
         </div>
         <div>
-          <strong>先试低门槛工具</strong>
-          <span>能免费试、容易上手的工具放在更前面。</span>
+          <strong>系统工具慢一点上</strong>
+          <span>涉及 ERP、供应链、客服系统和报价流程的工具，适合在团队已经跑顺后再接入。</span>
         </div>
+      </section>
+
+      <section class="audience-strip" aria-label="适合人群">
+        <p>适合家装公司、建材门店、瓷砖卫浴、定制家居、软装工作室、短视频获客团队。</p>
       </section>
 
       <section id="scenarios" class="scenario-strip" aria-labelledby="scenario-title">
         <div class="section-heading">
-          <p class="eyebrow">先选问题，再选工具</p>
-          <h2 id="scenario-title">你现在最想提升哪件事</h2>
+          <p class="eyebrow">按经营环节查看</p>
+          <h2 id="scenario-title">你现在更希望改善哪一段流程</h2>
         </div>
         <div id="categoryFilters" class="filter-list" aria-label="场景筛选"></div>
       </section>
@@ -66,11 +70,11 @@
       <section id="tools" class="tools-section" aria-labelledby="tools-title">
         <div class="section-heading tools-heading">
           <div>
-            <p class="eyebrow">常用工具库</p>
-            <h2 id="tools-title">找到适合你团队的 AI 工具</h2>
+            <p class="eyebrow">工具清单</p>
+            <h2 id="tools-title">挑适合自己业务阶段的工具</h2>
           </div>
           <div class="finder-actions" role="search">
-            <label for="searchInput">搜索工具、公司或用途</label>
+            <label for="searchInput">搜索工具名称、公司或用途</label>
             <div class="search-row">
               <input id="searchInput" type="search" placeholder="例如：酷家乐、瓷砖、预算、客服">
               <button id="clearSearch" type="button">清空</button>
@@ -83,24 +87,24 @@
 
       <section id="steps" class="steps-section" aria-labelledby="steps-title">
         <div class="section-heading">
-          <p class="eyebrow">第一次用 AI 工具</p>
-          <h2 id="steps-title">从一个小场景开始</h2>
+          <p class="eyebrow">建议的落地顺序</p>
+          <h2 id="steps-title">让团队先看到实际变化</h2>
         </div>
         <div class="steps-grid">
           <article>
             <span>1</span>
-            <h3>先拿一张真实照片试</h3>
-            <p>用门店、样板间或客户户型试效果图和选材工具，看客户是否愿意继续聊。</p>
+            <h3>先把展示做快</h3>
+            <p>用真实户型、门店照片或样板间，先把效果图和材料展示做得更直观。</p>
           </article>
           <article>
             <span>2</span>
-            <h3>先让一个岗位用起来</h3>
-            <p>销售先用出图，运营先用短视频，客服先用自动回复，不要一开始全公司改流程。</p>
+            <h3>再把沟通做快</h3>
+            <p>把常见咨询、报价解释、活动话术和短视频内容先交给 AI 提升效率。</p>
           </article>
           <article>
             <span>3</span>
-            <h3>再决定是否接系统</h3>
-            <p>涉及报价、商品库、客服渠道和施工流程的工具，确认能配合现有团队再采购。</p>
+            <h3>最后再接流程</h3>
+            <p>当团队已经确认有效，再决定是否接报价、施工、客服系统和供应链流程。</p>
           </article>
         </div>
       </section>
@@ -114,7 +118,7 @@
     </dialog>
 
     <footer class="site-footer">
-      <p>装修 AI 工具导航</p>
+      <p>装修商家 AI 选型指南</p>
       <span>工具费用、试用额度和服务范围，请以各平台官网说明为准。</span>
     </footer>
 

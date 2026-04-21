@@ -1,12 +1,12 @@
 const categories = [
-  { id: "all", label: "全部", short: "全部工具" },
-  { id: "design", label: "出效果图", short: "设计辅助" },
-  { id: "materials", label: "选材料", short: "材料可视化" },
-  { id: "budget", label: "算预算", short: "算量报价" },
-  { id: "project", label: "管工地", short: "施工管理" },
-  { id: "service", label: "接客服", short: "客服导购" },
-  { id: "marketing", label: "做获客", short: "内容营销" },
-  { id: "office", label: "办公助手", short: "通用大模型" }
+  { id: "all", label: "全部", short: "完整浏览全部工具" },
+  { id: "design", label: "出效果图", short: "让方案更容易成交" },
+  { id: "materials", label: "选材料", short: "让客户更快决定" },
+  { id: "budget", label: "算预算", short: "让报价更快更清楚" },
+  { id: "project", label: "管工地", short: "让项目推进更稳" },
+  { id: "service", label: "接客服", short: "减少漏接和重复回复" },
+  { id: "marketing", label: "做获客", short: "让内容和线索更快跑起来" },
+  { id: "office", label: "办公助手", short: "让日常工作更高效" }
 ];
 
 const tools = [
@@ -457,27 +457,19 @@ function categoryLabel(id) {
 
 function fitLabel(priority) {
   return {
-    S: "优先试",
-    A: "进阶工具",
-    B: "备选工具",
+    S: "适合起步",
+    A: "适合团队",
+    B: "按需补充",
     C: "了解一下"
   }[priority] || "可了解";
 }
 
 function renderFilters() {
-  const counts = categories.reduce((acc, category) => {
-    acc[category.id] =
-      category.id === "all"
-        ? tools.length
-        : tools.filter((tool) => tool.category.includes(category.id)).length;
-    return acc;
-  }, {});
-
   categoryFilters.innerHTML = categories
     .map(
       (category) => `
         <button class="filter-chip ${state.category === category.id ? "active" : ""}" data-category="${category.id}" type="button">
-          ${category.label}<span>${counts[category.id]}</span>
+          ${category.label}<span>${category.short}</span>
         </button>
       `
     )
@@ -514,7 +506,7 @@ function getFilteredTools() {
 
 function renderTools() {
   const filtered = getFilteredTools();
-  resultSummary.textContent = `当前显示 ${filtered.length} 个工具。可以先从“优先试”的工具开始，再看需要接入团队流程的工具。`;
+  resultSummary.textContent = `已为你整理 ${filtered.length} 个可参考工具。建议先看适合自己团队阶段的产品。`;
 
   if (!filtered.length) {
     toolGrid.innerHTML = `<div class="empty-state">没有找到匹配工具。可以换一个关键词，例如“效果图”“预算”“客服”。</div>`;
@@ -523,31 +515,42 @@ function renderTools() {
 
   toolGrid.innerHTML = filtered
     .map(
-      (tool, index) => `
-        <article class="tool-card">
-          <div class="tool-head">
-            <img class="tool-logo" src="${logoData(tool.name, tool.priority)}" alt="${tool.name} 图标" loading="lazy">
-            <div class="tool-title">
-              <h3>${tool.name}</h3>
-              <small>${tool.company}</small>
+      (tool) => `
+        <article class="tool-row">
+          <div class="tool-main">
+            <div class="tool-head">
+              <img class="tool-logo" src="${logoData(tool.name, tool.priority)}" alt="${tool.name} 图标" loading="lazy">
+              <div class="tool-title">
+                <div class="tool-title-line">
+                  <h3>${tool.name}</h3>
+                  <span class="fit-badge">${fitLabel(tool.priority)}</span>
+                </div>
+                <small>${tool.company}</small>
+              </div>
             </div>
-            <span class="fit-badge">${fitLabel(tool.priority)}</span>
-          </div>
-          <div class="tag-row">
-            ${tool.category.map((id) => `<span class="tag">${categoryLabel(id)}</span>`).join("")}
-            ${tool.tags.slice(0, 3).map((tag) => `<span class="tag">${tag}</span>`).join("")}
-          </div>
-          <div>
-            <p>${tool.summary}</p>
-            <div class="tool-facts">
-              <div class="fact"><strong>适合</strong><span>${tool.bestFor}</span></div>
-              <div class="fact"><strong>价值</strong><span>${tool.value}</span></div>
-              <div class="fact"><strong>门槛</strong><span>${tool.threshold}</span></div>
+            <p class="tool-summary">${tool.summary}</p>
+            <div class="tool-points">
+              <p><strong>适合</strong>${tool.bestFor}</p>
+              <p><strong>价值</strong>${tool.value}</p>
+            </div>
+            <div class="tag-row">
+              ${tool.category.map((id) => `<span class="tag">${categoryLabel(id)}</span>`).join("")}
+              ${tool.tags.slice(0, 2).map((tag) => `<span class="tag">${tag}</span>`).join("")}
             </div>
           </div>
-          <div class="tool-actions">
-            <button class="secondary-button" type="button" data-index="${tools.indexOf(tool)}">看详情</button>
-            <a class="primary-link" href="${tool.url}" target="_blank" rel="noreferrer">访问官网</a>
+          <div class="tool-side">
+            <div class="tool-side-copy">
+              <span>门槛</span>
+              <strong>${tool.threshold}</strong>
+            </div>
+            <div class="tool-side-copy">
+              <span>费用</span>
+              <strong>${tool.pricing}</strong>
+            </div>
+            <div class="tool-actions">
+              <button class="secondary-button" type="button" data-index="${tools.indexOf(tool)}">看详情</button>
+              <a class="primary-link" href="${tool.url}" target="_blank" rel="noreferrer">访问官网</a>
+            </div>
           </div>
         </article>
       `
