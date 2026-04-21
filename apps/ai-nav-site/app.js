@@ -424,41 +424,18 @@ const state = {
 
 const categoryFilters = document.querySelector("#categoryFilters");
 const toolGrid = document.querySelector("#toolGrid");
+const mobileGroups = document.querySelector("#mobileGroups");
 const resultSummary = document.querySelector("#resultSummary");
 const dialog = document.querySelector("#toolDialog");
 const dialogContent = document.querySelector("#dialogContent");
 const closeDialog = document.querySelector("#closeDialog");
 
-function logoData(name, priority) {
-  const colors = {
-    S: ["#0b57d0", "#e8f0fe"],
-    A: ["#188038", "#e6f4ea"],
-    B: ["#b06000", "#fef7e0"],
-    C: ["#d93025", "#fce8e6"]
-  };
-  const [ink, bg] = colors[priority] || colors.B;
-  const initials = Array.from(name.replace(/\s+/g, "")).slice(0, 2).join("");
-  const svg = `
-    <svg xmlns="http://www.w3.org/2000/svg" width="64" height="64" viewBox="0 0 64 64">
-      <rect width="64" height="64" rx="8" fill="${bg}"/>
-      <rect x="10" y="10" width="44" height="44" rx="8" fill="#ffffff" opacity="0.9"/>
-      <text x="32" y="38" text-anchor="middle" font-family="Arial, sans-serif" font-size="18" font-weight="800" fill="${ink}">${initials}</text>
-    </svg>
-  `;
-  return `data:image/svg+xml;charset=UTF-8,${encodeURIComponent(svg)}`;
-}
-
 function categoryLabel(id) {
   return categories.find((item) => item.id === id)?.label || id;
 }
 
-function fitLabel(priority) {
-  return {
-    S: "适合起步",
-    A: "适合团队",
-    B: "按需补充",
-    C: "了解一下"
-  }[priority] || "可了解";
+function shortSummary(text, length = 32) {
+  return text.length > length ? `${text.slice(0, length)}…` : text;
 }
 
 function renderFilters() {
@@ -501,40 +478,62 @@ function renderTools() {
     .map(
       (tool) => `
         <article class="tool-row" data-index="${tools.indexOf(tool)}" role="button" tabindex="0" aria-label="查看 ${tool.name} 详情">
-          <div class="tool-main">
-            <div class="tool-head">
-              <img class="tool-logo" src="${logoData(tool.name, tool.priority)}" alt="${tool.name} 图标" loading="lazy">
-              <div class="tool-title">
-                <div class="tool-title-line">
-                  <h3>${tool.name}</h3>
-                  <span class="fit-badge">${fitLabel(tool.priority)}</span>
-                </div>
-                <small>${tool.company}</small>
-              </div>
-            </div>
-            <p class="tool-summary">${tool.summary}</p>
+          <h3>${tool.name}</h3>
+          <p class="tool-summary">${shortSummary(tool.summary, 54)}</p>
+          <div class="tool-meta">
+            <span>${tool.company}</span>
+            <span class="card-arrow" aria-hidden="true">查看 →</span>
           </div>
-          <div class="tool-card-bottom">
-            <div class="tag-row">
-              ${tool.category.slice(0, 2).map((id) => `<span class="tag">${categoryLabel(id)}</span>`).join("")}
-            </div>
-          </div>
-          <span class="card-arrow" aria-hidden="true">›</span>
         </article>
       `
     )
     .join("");
 }
 
+function renderMobileGroups() {
+  mobileGroups.innerHTML = categories
+    .filter((category) => category.id !== "all")
+    .map((category) => {
+      const groupedTools = tools
+        .filter((tool) => tool.category.includes(category.id))
+        .sort((a, b) => {
+          const order = { S: 0, A: 1, B: 2, C: 3 };
+          return order[a.priority] - order[b.priority] || a.name.localeCompare(b.name, "zh-CN");
+        });
+
+      if (!groupedTools.length) return "";
+
+      return `
+        <section class="mobile-group" aria-label="${category.label}">
+          <div class="mobile-group-head">
+            <h2>${category.label}</h2>
+            <span>${groupedTools.length} 个</span>
+          </div>
+          <div class="mobile-tool-grid">
+            ${groupedTools
+              .map(
+                (tool) => `
+                  <article class="mobile-tool-card" data-index="${tools.indexOf(tool)}" role="button" tabindex="0" aria-label="查看 ${tool.name} 详情">
+                    <h3>${tool.name}</h3>
+                    <p>${shortSummary(tool.summary, 20)}</p>
+                    <span class="mobile-card-arrow" aria-hidden="true">›</span>
+                  </article>
+                `
+              )
+              .join("")}
+          </div>
+        </section>
+      `;
+    })
+    .join("");
+}
+
 function renderDialog(tool) {
   dialogContent.innerHTML = `
     <div class="dialog-head">
-      <img src="${logoData(tool.name, tool.priority)}" alt="${tool.name} 图标">
-      <div>
-        <p class="eyebrow">${fitLabel(tool.priority)} · ${tool.category.map(categoryLabel).join(" / ")}</p>
-        <h2 id="dialogTitle">${tool.name}</h2>
-        <p>${tool.company}</p>
-      </div>
+      <p class="eyebrow">${tool.category.map(categoryLabel).join(" / ")}</p>
+      <h2 id="dialogTitle">${tool.name}</h2>
+      <p>${tool.company}</p>
     </div>
     <div class="dialog-section">
       <h3>一句话说明</h3>
@@ -555,10 +554,6 @@ function renderDialog(tool) {
         <li>上手门槛：${tool.threshold}</li>
         <li>正式采购前，建议查看官网的服务范围、商用版权和最新套餐。</li>
       </ul>
-    </div>
-    <div class="dialog-section">
-      <h3>标签</h3>
-      <div class="tag-row">${tool.tags.map((tag) => `<span class="tag">${tag}</span>`).join("")}</div>
     </div>
     <div class="dialog-section">
       <a class="primary-link" href="${tool.url}" target="_blank" rel="noreferrer">打开官网</a>
@@ -589,6 +584,20 @@ toolGrid.addEventListener("keydown", (event) => {
   renderDialog(tools[Number(card.dataset.index)]);
 });
 
+mobileGroups.addEventListener("click", (event) => {
+  const card = event.target.closest("[data-index]");
+  if (!card) return;
+  renderDialog(tools[Number(card.dataset.index)]);
+});
+
+mobileGroups.addEventListener("keydown", (event) => {
+  if (event.key !== "Enter" && event.key !== " ") return;
+  const card = event.target.closest("[data-index]");
+  if (!card) return;
+  event.preventDefault();
+  renderDialog(tools[Number(card.dataset.index)]);
+});
+
 closeDialog.addEventListener("click", () => dialog.close());
 
 dialog.addEventListener("click", (event) => {
@@ -597,3 +606,4 @@ dialog.addEventListener("click", (event) => {
 
 renderFilters();
 renderTools();
+renderMobileGroups();

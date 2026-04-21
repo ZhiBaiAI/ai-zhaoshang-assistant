@@ -9,39 +9,40 @@
       content="面向建材、装修、家居、装企老板的 AI 选型指南，按效果图、选材料、预算、施工、营销、客服等经营场景整理。"
     >
     <link rel="icon" href="./assets/favicon.svg" type="image/svg+xml">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="./styles.css">
   </head>
   <body>
-    <header class="site-header">
-      <a class="brand" href="#top" aria-label="装修商家 AI 选型指南首页">
-        <span class="brand-mark" aria-hidden="true">
-          <span></span><span></span><span></span><span></span>
-        </span>
-        <span>
-          <strong>装修商家 AI 工具库</strong>
-        </span>
-      </a>
-    </header>
+    <div class="app-layout">
+      <aside class="app-sidebar" aria-label="侧边栏">
+        <div class="sidebar-header">
+          <a class="brand" href="#top" aria-label="装修工具库首页">
+            <div class="brand-text">
+              <strong>装修 AI 工具库</strong>
+              <small>商家工具导航</small>
+            </div>
+          </a>
+        </div>
+        <div id="scenarios" class="sidebar-nav" aria-label="场景筛选">
+          <div id="categoryFilters" class="filter-list"></div>
+        </div>
+      </aside>
 
-    <main id="top">
-      <section id="tools" class="catalog" aria-labelledby="tools-title">
-        <div class="catalog-head">
-          <div class="catalog-copy">
-            <h1 id="tools-title">AI 工具导航</h1>
-          </div>
+      <main id="top" class="app-main">
+        <div class="main-header">
+          <h1 id="tools-title">装修 AI 工具库</h1>
+          <p class="main-subtitle">按经营场景整理，方便老板快速找到能直接试用的工具。</p>
         </div>
-        <div class="catalog-shell">
-          <aside id="scenarios" class="filter-wrap" aria-label="场景筛选">
-            <p class="filter-title">经营场景</p>
-            <div id="categoryFilters" class="filter-list"></div>
-          </aside>
-          <div class="results-panel">
-            <div id="resultSummary" class="result-summary" aria-live="polite"></div>
-            <div id="toolGrid" class="tool-grid"></div>
-          </div>
+
+        <div class="results-panel">
+          <div id="resultSummary" class="result-summary" aria-live="polite"></div>
+          <div id="toolGrid" class="tool-grid"></div>
+          <div id="mobileGroups" class="mobile-groups"></div>
         </div>
-      </section>
-    </main>
+      </main>
+    </div>
 
     <dialog id="toolDialog" class="tool-dialog" aria-labelledby="dialogTitle">
       <div class="dialog-body">
