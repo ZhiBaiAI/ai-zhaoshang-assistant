@@ -29,15 +29,20 @@
         <div class="catalog-head">
           <div class="catalog-copy">
             <p class="eyebrow">装修行业 AI 工具</p>
-            <h1 id="tools-title">按经营场景选 AI 工具</h1>
-            <p class="lead">面向门店、装企、设计师和获客团队，把常用 AI 工具按实际工作分类整理。</p>
+            <h1 id="tools-title">AI 工具导航</h1>
+            <p class="lead">按门店、装企、设计和获客场景整理，先看能直接用起来的工具。</p>
           </div>
         </div>
-        <div id="scenarios" class="filter-wrap">
-          <div id="categoryFilters" class="filter-list" aria-label="场景筛选"></div>
+        <div class="catalog-shell">
+          <aside id="scenarios" class="filter-wrap" aria-label="场景筛选">
+            <p class="filter-title">经营场景</p>
+            <div id="categoryFilters" class="filter-list"></div>
+          </aside>
+          <div class="results-panel">
+            <div id="resultSummary" class="result-summary" aria-live="polite"></div>
+            <div id="toolGrid" class="tool-grid"></div>
+          </div>
         </div>
-        <div id="resultSummary" class="result-summary" aria-live="polite"></div>
-        <div id="toolGrid" class="tool-grid"></div>
       </section>
     </main>
 
