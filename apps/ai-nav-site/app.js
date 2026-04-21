@@ -513,23 +513,10 @@ function renderTools() {
               </div>
             </div>
             <p class="tool-summary">${tool.summary}</p>
-            <div class="tool-points">
-              <p><strong>适合</strong>${tool.bestFor}</p>
-              <p><strong>价值</strong>${tool.value}</p>
-            </div>
-            <div class="tag-row">
-              ${tool.category.map((id) => `<span class="tag">${categoryLabel(id)}</span>`).join("")}
-              ${tool.tags.slice(0, 2).map((tag) => `<span class="tag">${tag}</span>`).join("")}
-            </div>
           </div>
-          <div class="tool-side">
-            <div class="tool-side-copy">
-              <span>门槛</span>
-              <strong>${tool.threshold}</strong>
-            </div>
-            <div class="tool-side-copy">
-              <span>费用</span>
-              <strong>${tool.pricing}</strong>
+          <div class="tool-card-bottom">
+            <div class="tag-row">
+              ${tool.category.slice(0, 2).map((id) => `<span class="tag">${categoryLabel(id)}</span>`).join("")}
             </div>
             <div class="tool-actions">
               <button class="secondary-button" type="button" data-index="${tools.indexOf(tool)}">看详情</button>
