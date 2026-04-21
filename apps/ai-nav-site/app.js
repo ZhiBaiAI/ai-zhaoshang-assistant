@@ -419,19 +419,15 @@ const tools = [
 ];
 
 const state = {
-  category: "all",
-  query: ""
+  category: "all"
 };
 
 const categoryFilters = document.querySelector("#categoryFilters");
 const toolGrid = document.querySelector("#toolGrid");
-const searchInput = document.querySelector("#searchInput");
-const clearSearch = document.querySelector("#clearSearch");
 const resultSummary = document.querySelector("#resultSummary");
 const dialog = document.querySelector("#toolDialog");
 const dialogContent = document.querySelector("#dialogContent");
 const closeDialog = document.querySelector("#closeDialog");
-const quickSearches = document.querySelector(".quick-searches");
 
 function logoData(name, priority) {
   const colors = {
@@ -465,36 +461,13 @@ function fitLabel(priority) {
   }[priority] || "可了解";
 }
 
-function syncSearchControls() {
-  clearSearch.hidden = !state.query.trim();
-}
-
 function renderFilters() {
-  const visibleTools = tools.filter((tool) => {
-    const query = state.query.trim().toLowerCase();
-    if (!query) return true;
-    return [
-      tool.name,
-      tool.company,
-      tool.summary,
-      tool.bestFor,
-      tool.value,
-      tool.pricing,
-      tool.threshold,
-      ...tool.tags,
-      ...tool.category.map(categoryLabel)
-    ]
-      .join(" ")
-      .toLowerCase()
-      .includes(query);
-  });
-
   categoryFilters.innerHTML = categories
     .map((category) => {
       const count =
         category.id === "all"
-          ? visibleTools.length
-          : visibleTools.filter((tool) => tool.category.includes(category.id)).length;
+          ? tools.length
+          : tools.filter((tool) => tool.category.includes(category.id)).length;
 
       return `
         <button class="filter-chip ${state.category === category.id ? "active" : ""}" data-category="${category.id}" type="button">
@@ -506,27 +479,8 @@ function renderFilters() {
 }
 
 function getFilteredTools() {
-  const query = state.query.trim().toLowerCase();
-
   return tools
     .filter((tool) => state.category === "all" || tool.category.includes(state.category))
-    .filter((tool) => {
-      if (!query) return true;
-      const haystack = [
-        tool.name,
-        tool.company,
-        tool.summary,
-        tool.bestFor,
-        tool.value,
-        tool.pricing,
-        tool.threshold,
-        ...tool.tags,
-        ...tool.category.map(categoryLabel)
-      ]
-        .join(" ")
-        .toLowerCase();
-      return haystack.includes(query);
-    })
     .sort((a, b) => {
       const order = { S: 0, A: 1, B: 2, C: 3 };
       return order[a.priority] - order[b.priority] || a.name.localeCompare(b.name, "zh-CN");
@@ -535,11 +489,11 @@ function getFilteredTools() {
 
 function renderTools() {
   const filtered = getFilteredTools();
-  syncSearchControls();
-  resultSummary.textContent = `已为你整理 ${filtered.length} 个可参考工具。建议先看适合自己团队阶段的产品。`;
+  const activeLabel = categoryLabel(state.category);
+  resultSummary.textContent = `当前分类：${activeLabel}，共 ${filtered.length} 个工具。建议先看“适合起步”的产品。`;
 
   if (!filtered.length) {
-    toolGrid.innerHTML = `<div class="empty-state">没有找到匹配工具。可以换一个关键词，例如“效果图”“预算”“客服”。</div>`;
+    toolGrid.innerHTML = `<div class="empty-state">这个分类暂时没有工具。可以先查看其他经营场景。</div>`;
     return;
   }
 
@@ -641,30 +595,6 @@ toolGrid.addEventListener("click", (event) => {
   const button = event.target.closest("[data-index]");
   if (!button) return;
   renderDialog(tools[Number(button.dataset.index)]);
-});
-
-searchInput.addEventListener("input", (event) => {
-  state.query = event.target.value;
-  renderFilters();
-  renderTools();
-});
-
-clearSearch.addEventListener("click", () => {
-  state.query = "";
-  searchInput.value = "";
-  renderFilters();
-  renderTools();
-  searchInput.focus();
-});
-
-quickSearches.addEventListener("click", (event) => {
-  const button = event.target.closest("[data-suggestion]");
-  if (!button) return;
-  state.query = button.dataset.suggestion;
-  searchInput.value = state.query;
-  renderFilters();
-  renderTools();
-  searchInput.focus();
 });
 
 closeDialog.addEventListener("click", () => dialog.close());
