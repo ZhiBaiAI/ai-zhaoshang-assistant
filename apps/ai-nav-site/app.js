@@ -1,7 +1,6 @@
 const categories = [
   { id: "all", label: "全部", short: "完整浏览全部工具" },
-  { id: "outbound", label: "AI外呼获客", short: "找客户、筛客户、跟进客户" },
-  { id: "lead", label: "客户线索", short: "找名单、拓客源、客户池" },
+  { id: "outbound", label: "AI获客", short: "找客户、筛客户、跟进客户" },
   { id: "meeting", label: "AI语音纪要", short: "会议录音、访谈整理、跟进记录" },
   { id: "video", label: "AI视频获客", short: "短视频、口播、内容引流" },
   { id: "design", label: "家装设计", short: "效果图、方案图、材料搭配" },
@@ -9,8 +8,7 @@ const categories = [
 ];
 
 const categoryToolOrder = {
-  outbound: ["云蝠智能", "语聚AI", "绿建管家"],
-  lead: ["客源星球", "装企客源引擎"],
+  outbound: ["云蝠智能", "客源星球", "语聚AI", "绿建管家", "装企客源引擎"],
   meeting: ["讯飞听见", "GET笔记"],
   video: ["即梦 AI", "说得AI", "开拍", "剪映"],
   design: ["AI室内大师", "建筑学长", "酷家乐 AI", "三维家", "图销AI", "美间"],
@@ -249,7 +247,7 @@ const tools = [
     domain: "应用商店",
     url: "",
     access: "请在手机应用商店搜索“客源星球”下载使用。",
-    category: ["lead"],
+    category: ["outbound"],
     priority: "A",
     summary: "AI 拓客获客手机应用，支持全网获客、地图拓客、附近企业、企业专区、精准客源和批量导出。",
     bestFor: "建材经销商、装企销售、电销团队、地推团队",
@@ -279,7 +277,7 @@ const tools = [
     domain: "应用商店",
     url: "",
     access: "请在手机应用商店搜索“装企客源引擎”下载使用。",
-    category: ["lead"],
+    category: ["outbound"],
     priority: "B",
     summary: "面向装修公司、家居建材行业的营销裂变获客手机应用，主打业主裂变、品牌推广和家居建材获客推广。",
     bestFor: "装企老板、整装公司、全屋定制、家居建材门店",
