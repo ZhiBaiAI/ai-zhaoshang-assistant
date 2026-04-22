@@ -1,11 +1,19 @@
 const categories = [
   { id: "all", label: "全部", short: "完整浏览全部工具" },
   { id: "outbound", label: "AI外呼获客", short: "找客户、筛客户、跟进客户" },
+  { id: "meeting", label: "AI语音纪要", short: "会议录音、访谈整理、跟进记录" },
   { id: "video", label: "AI视频获客", short: "短视频、口播、内容引流" },
-  { id: "design", label: "设计", short: "效果图、方案图、材料搭配" },
-  { id: "service", label: "客服", short: "减少漏接和重复回复" },
-  { id: "office", label: "办公助手", short: "让日常工作更高效" }
+  { id: "design", label: "家装设计", short: "效果图、方案图、材料搭配" },
+  { id: "service", label: "AI智能客服", short: "私信接待、网站客服、自动回复" }
 ];
+
+const categoryToolOrder = {
+  outbound: ["云蝠智能", "来鼓AI", "快商通 AI 私信留资机器人", "客源星球", "绿建管家", "美洽", "语聚AI", "装企客源引擎"],
+  meeting: ["讯飞听见", "GET笔记"],
+  video: ["即梦 AI", "说得AI", "开拍", "剪映"],
+  design: ["AI室内大师", "建筑学长", "酷家乐 AI", "三维家", "图销AI", "美间"],
+  service: ["来鼓AI", "米多客", "美洽", "3Chat.ai", "语聚AI", "晓多智能客服", "快商通 AI 私信留资机器人", "图销AI", "云蝠智能", "绿建管家"]
+};
 
 const tools = [
   {
@@ -27,7 +35,7 @@ const tools = [
     company: "广东三维家",
     domain: "3vjia.com",
     url: "https://www.3vjia.com/",
-    category: ["design", "office"],
+    category: ["design"],
     priority: "S",
     summary: "覆盖三维云设计、AI 渲染、智能布置、铺砖、顶墙、水电、橱衣柜、门窗、报价、图纸和生产数据。",
     bestFor: "定制家居、瓷砖卫浴、门窗、装企门店",
@@ -41,7 +49,7 @@ const tools = [
     company: "美间 / 群核生态",
     domain: "meijian.com",
     url: "https://www.meijian.com/",
-    category: ["design", "video"],
+    category: ["design"],
     priority: "S",
     summary: "在线平面云设计，适合做软装搭配、提案文档、家装提案、海报设计，并提供智能抠图和以图搜图。",
     bestFor: "软装设计师、家居门店、运营人员",
@@ -107,32 +115,117 @@ const tools = [
     tags: ["电商客服", "商品推荐", "多平台"]
   },
   {
-    name: "一装",
-    company: "成都一装科技",
-    domain: "1zerp.com",
-    url: "https://www.1zerp.com/",
-    category: ["office"],
-    priority: "A",
-    summary: "覆盖客户、合作商、项目、员工管理，适用于传统家装、精装房、工装业务。",
-    bestFor: "中小装企、工装公司",
-    value: "把签单、施工、材料、结算放到一套流程里，减少老板靠微信群盯进度。",
-    pricing: "官网提供免费试用。",
+    name: "来鼓AI",
+    company: "来鼓AI",
+    domain: "laigu.com",
+    url: "https://laigu.com/",
+    category: ["service", "outbound"],
+    priority: "S",
+    summary: "面向小红书、抖音、快手等平台的获客和智能客服工具，支持私信评论聚合、客服分流、自动追粉和 AI 数字员工。",
+    bestFor: "短视频获客团队、小红书运营、装企私信接待、门店客服",
+    value: "把多平台私信和评论集中处理，减少漏回，同时用 AI 员工承接高频咨询和留资引导。",
+    pricing: "官网提供免费试用入口，正式套餐以官方报价为准。",
     threshold: "中",
-    tags: ["装企管理", "施工", "结算"]
+    tags: ["私信聚合", "评论获客", "AI员工"]
   },
   {
-    name: "掌赋",
-    company: "掌赋",
-    domain: "wjkj.com",
-    url: "https://www.wjkj.com/",
-    category: ["service", "office"],
+    name: "米多客",
+    company: "米多客",
+    domain: "miduoke.net",
+    url: "https://www.miduoke.net/",
+    category: ["service"],
     priority: "A",
-    summary: "覆盖客户管理、报价签约、施工交付、供应链、业财一体化、业主服务、流程管控和统计报表。",
-    bestFor: "家装公司数字化运营",
-    value: "适合想把客户、工地、材料、财务全部在线化的装企。",
-    pricing: "手机应用可下载，企业服务需咨询。",
+    summary: "全渠道在线客服系统，支持网站、微信、公众号、小程序、抖音等渠道，并提供 AI 客服、工单、质检和统计分析。",
+    bestFor: "建材官网、电商店铺、装企客服团队、售后服务团队",
+    value: "把网站、社媒和私域咨询统一接待，常见问题交给智能客服先回复，人工集中处理高意向客户。",
+    pricing: "官网提供免费试用和客户端下载，企业版价格以官方为准。",
+    threshold: "中",
+    tags: ["在线客服", "全渠道", "工单"]
+  },
+  {
+    name: "美洽",
+    company: "美洽",
+    domain: "meiqia.com",
+    url: "https://www.meiqia.com/",
+    category: ["service", "outbound"],
+    priority: "A",
+    summary: "智能客服和获客机器人平台，支持网页、小程序、公众号等渠道接入，提供自动应答、知识库、线索获取和数据洞察。",
+    bestFor: "品牌官网、建材电商、装企咨询台、售前客服",
+    value: "适合把官网访客和线上咨询转成有效线索，同时降低客服重复答疑压力。",
+    pricing: "官网提供试用和咨询入口，具体套餐以官方报价为准。",
+    threshold: "中",
+    tags: ["获客机器人", "在线客服", "线索"]
+  },
+  {
+    name: "3Chat.ai",
+    company: "纽酷科技",
+    domain: "3chat.ai",
+    url: "https://www.3chat.ai/",
+    category: ["service"],
+    priority: "A",
+    summary: "能动性 AI 客服智能体，支持知识库问答、全渠道消息聚合、客户画像、预约、拉群和售后等业务动作。",
+    bestFor: "私域运营、线上客服、跨平台店铺、售前咨询团队",
+    value: "不只是自动回复，还能把咨询推进到预约、留资、拉群和售后处理，适合想做客服转化闭环的团队。",
+    pricing: "官网公开成长版、专业版、企业版等套餐，具体价格以官网为准。",
+    threshold: "中",
+    tags: ["智能体客服", "全渠道", "私域转化"]
+  },
+  {
+    name: "语聚AI",
+    company: "北京集简慧通互联科技",
+    domain: "yuju-ai.com",
+    url: "https://yuju-ai.com/about.html",
+    category: ["service", "outbound"],
+    priority: "A",
+    summary: "一站式 AI 客服和营销助手平台，连接企业知识库、沟通渠道和业务系统，支持自动回复、留资、下单引导和流程自动化。",
+    bestFor: "需要多平台客服、自动化营销、私域运营的建材家居商家",
+    value: "适合把小红书、抖音、微信等渠道的咨询和业务系统打通，让 AI 帮忙回复、分流和沉淀客户信息。",
+    pricing: "官网提供免费试用入口，企业方案以官方沟通为准。",
     threshold: "中到高",
-    tags: ["客户管理", "工地预警", "业财"]
+    tags: ["自动化营销", "多渠道客服", "知识库"]
+  },
+  {
+    name: "讯飞听见",
+    company: "科大讯飞",
+    domain: "iflyrec.com",
+    url: "https://www.iflyrec.com/",
+    category: ["meeting"],
+    priority: "S",
+    summary: "AI 语音记录助手，支持实时录音、导入音频转文字、说话人区分、AI 整理会议纪要和多语种翻译。",
+    bestFor: "老板会议、客户沟通、设计交底、工地复盘、招商培训",
+    value: "把会议和客户沟通自动转成文字与纪要，方便后续跟进需求、报价、任务和责任人。",
+    pricing: "官网可在线使用，免费额度和付费服务以官方页面为准。",
+    threshold: "低",
+    tags: ["会议纪要", "录音转文字", "任务整理"]
+  },
+  {
+    name: "GET笔记",
+    company: "得到",
+    domain: "应用商店",
+    url: "",
+    access: "请在手机应用商店搜索“GET笔记”下载使用。",
+    category: ["meeting"],
+    priority: "A",
+    summary: "AI 智能笔记应用，支持语音、图片、链接和文字记录，能自动转写、润色、总结，并支持基于笔记内容搜索问答。",
+    bestFor: "老板随手记录、销售复盘、客户需求整理、会议重点沉淀",
+    value: "适合把零散想法、客户沟通和会议录音随手记录下来，后续快速整理成可执行事项。",
+    pricing: "应用商店显示免费，会员和应用内购买以实际页面为准。",
+    threshold: "低",
+    tags: ["手机笔记", "语音记录", "智能搜索"]
+  },
+  {
+    name: "云蝠智能",
+    company: "云蝠智能",
+    domain: "ccgpt.net",
+    url: "https://www.ccgpt.net/",
+    category: ["outbound", "service"],
+    priority: "S",
+    summary: "大模型语音智能体和 AI 呼叫中心，支持语音外呼、智能呼入、人机协同、客户跟进和营销触达。",
+    bestFor: "装企电销团队、建材厂家招商、门店回访、沉睡客户唤醒",
+    value: "适合需要批量电话触达、客户回访、活动通知和意向筛选的团队，让人工销售优先跟进高意向客户。",
+    pricing: "官网提供注册体验和方案咨询，企业价格以官方沟通为准。",
+    threshold: "中到高",
+    tags: ["语音外呼", "客户回访", "意向筛选"]
   },
   {
     name: "快商通 AI 私信留资机器人",
@@ -169,7 +262,7 @@ const tools = [
     domain: "应用商店",
     url: "",
     access: "请在手机应用商店搜索“绿建管家”下载使用。",
-    category: ["outbound", "service", "office"],
+    category: ["outbound", "service"],
     priority: "A",
     summary: "面向建筑建材、钢材、涂料、装修材料行业的获客外呼和客户管理手机应用，包含精准获客、智能外呼、客户管理等能力。",
     bestFor: "建材厂家、经销商、工程材料销售、装修材料门店",
@@ -194,53 +287,11 @@ const tools = [
     tags: ["装企获客", "裂变", "推广"]
   },
   {
-    name: "通义千问",
-    company: "阿里",
-    domain: "qianwen.com",
-    url: "https://www.qianwen.com/qianwen/",
-    category: ["office", "service"],
-    priority: "S",
-    summary: "阿里旗下全能 AI 助手，适合中文问答、写作、办公、图片理解和生态对接。",
-    bestFor: "建材电商、运营、客服主管",
-    value: "适合做产品详情页、直播脚本、客服话术、表格清单和阿里生态业务。",
-    pricing: "有免费入口，企业/API 以官网为准。",
-    threshold: "低",
-    tags: ["中文办公", "电商", "话术"]
-  },
-  {
-    name: "豆包",
-    company: "字节跳动",
-    domain: "doubao.com",
-    url: "https://www.doubao.com/",
-    category: ["office", "video"],
-    priority: "S",
-    summary: "支持 AI 写作、翻译、文档、搜索、图像生成，适合抖音和剪映生态内容生产。",
-    bestFor: "短视频运营、小红书运营、老板助理",
-    value: "能快速产出装修避坑文案、短视频分镜、门店活动文案和客户沟通话术。",
-    pricing: "有免费入口，付费权益以官网为准。",
-    threshold: "低",
-    tags: ["抖音", "文案", "图像"]
-  },
-  {
-    name: "稿定设计",
-    company: "稿定",
-    domain: "gaoding.com",
-    url: "https://www.gaoding.com/",
-    category: ["video"],
-    priority: "S",
-    summary: "中文模板设计平台，支持海报、电商图、抠图、商品图和营销图制作。",
-    bestFor: "建材门店、电商运营、活动策划",
-    value: "适合快速做朋友圈海报、主图、促销图和门店物料。",
-    pricing: "免费加会员模式，商用素材以官网为准。",
-    threshold: "低",
-    tags: ["中文模板", "电商图", "抠图"]
-  },
-  {
     name: "即梦 AI",
     company: "字节跳动 / 剪映生态",
     domain: "jianying.com",
     url: "https://jimeng.jianying.com/",
-    category: ["video", "design"],
+    category: ["video"],
     priority: "S",
     summary: "AI 图片和视频生成工具，支持文生图、图生图、图生视频等创意能力。",
     bestFor: "短视频运营、设计师、品牌营销",
@@ -291,48 +342,6 @@ const tools = [
     threshold: "低到中",
     tags: ["数字人", "提词器", "口播"]
   },
-  {
-    name: "可灵 AI",
-    company: "快手",
-    domain: "kuaishou.com",
-    url: "https://klingai.kuaishou.com/",
-    category: ["video"],
-    priority: "A",
-    summary: "AI 视频、图片生成和图生视频工具，适合生成视觉素材和短片。",
-    bestFor: "品牌营销、短视频运营",
-    value: "可用于装修案例短视频、产品场景动画和活动视频素材。",
-    pricing: "免费/会员/积分以官网为准。",
-    threshold: "低",
-    tags: ["AI视频", "场景动画", "素材"]
-  },
-  {
-    name: "云装天下",
-    company: "云立方 / 云装天下",
-    domain: "cloudcubic.net",
-    url: "https://www.cloudcubic.net/",
-    category: ["office"],
-    priority: "B",
-    summary: "装饰企业管理系统，覆盖销售、客户关系、协同沟通、可视化施工、财务、供应链和渠道。",
-    bestFor: "成熟装企、需要多端管理的团队",
-    value: "适合把 PC、APP、微信端流程打通。",
-    pricing: "需咨询。",
-    threshold: "中到高",
-    tags: ["企业管理", "供应链", "财务"]
-  },
-  {
-    name: "美佳云装",
-    company: "创软科技",
-    domain: "zxerp.com",
-    url: "https://www.zxerp.com/",
-    category: ["office"],
-    priority: "B",
-    summary: "覆盖客户跟单、预算报价、财务收款、施工进度、材料成本、材料商接单、工人派工和业主查看进度。",
-    bestFor: "家装、工装、精装修公司",
-    value: "适合传统装企把工地、材料、业主验收和财务串起来。",
-    pricing: "需咨询。",
-    threshold: "中",
-    tags: ["预算报价", "派工", "业主端"]
-  }
 ];
 
 const state = {
@@ -349,6 +358,39 @@ const closeDialog = document.querySelector("#closeDialog");
 
 function categoryLabel(id) {
   return categories.find((item) => item.id === id)?.label || id;
+}
+
+function categoryPosition(categoryId) {
+  const index = categories.findIndex((item) => item.id === categoryId);
+  return index === -1 ? 999 : index;
+}
+
+function primaryCategory(tool) {
+  return tool.category
+    .filter((categoryId) => categoryId !== "all")
+    .sort((a, b) => categoryPosition(a) - categoryPosition(b))[0];
+}
+
+function toolPosition(tool, categoryId) {
+  const orderedNames = categoryToolOrder[categoryId] || [];
+  const index = orderedNames.indexOf(tool.name);
+  return index === -1 ? 999 : index;
+}
+
+function sortTools(toolList, categoryId) {
+  const priorityOrder = { S: 0, A: 1, B: 2, C: 3 };
+
+  return [...toolList].sort((a, b) => {
+    const activeCategory = categoryId === "all" ? primaryCategory(a) : categoryId;
+    const comparedCategory = categoryId === "all" ? primaryCategory(b) : categoryId;
+    const categoryDiff = categoryPosition(activeCategory) - categoryPosition(comparedCategory);
+    if (categoryDiff) return categoryDiff;
+
+    const positionDiff = toolPosition(a, activeCategory) - toolPosition(b, comparedCategory);
+    if (positionDiff) return positionDiff;
+
+    return priorityOrder[a.priority] - priorityOrder[b.priority] || a.name.localeCompare(b.name, "zh-CN");
+  });
 }
 
 function shortSummary(text, length = 32) {
@@ -373,12 +415,10 @@ function renderFilters() {
 }
 
 function getFilteredTools() {
-  return tools
-    .filter((tool) => state.category === "all" || tool.category.includes(state.category))
-    .sort((a, b) => {
-      const order = { S: 0, A: 1, B: 2, C: 3 };
-      return order[a.priority] - order[b.priority] || a.name.localeCompare(b.name, "zh-CN");
-    });
+  return sortTools(
+    tools.filter((tool) => state.category === "all" || tool.category.includes(state.category)),
+    state.category
+  );
 }
 
 function renderTools() {
@@ -412,11 +452,8 @@ function renderMobileGroups() {
     .filter((category) => category.id !== "all")
     .map((category) => {
       const groupedTools = tools
-        .filter((tool) => tool.category.includes(category.id))
-        .sort((a, b) => {
-          const order = { S: 0, A: 1, B: 2, C: 3 };
-          return order[a.priority] - order[b.priority] || a.name.localeCompare(b.name, "zh-CN");
-        });
+        .filter((tool) => tool.category.includes(category.id));
+      const sortedTools = sortTools(groupedTools, category.id);
 
       if (!groupedTools.length) return "";
 
@@ -427,7 +464,7 @@ function renderMobileGroups() {
             <span>${groupedTools.length} 个</span>
           </div>
           <div class="mobile-tool-grid">
-            ${groupedTools
+            ${sortedTools
               .map(
                 (tool) => `
                   <article class="mobile-tool-card" data-index="${tools.indexOf(tool)}" role="button" tabindex="0" aria-label="查看 ${tool.name} 详情">
