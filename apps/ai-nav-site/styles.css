@@ -1,21 +1,21 @@
 :root {
-  --bg: #f9fafb;
-  --panel: #edf0f5;
-  --surface: #ffffff;
-  --surface-hover: #f6f8fc;
-  --ink: #15191f;
-  --muted: #4a5568;
-  --subtle: #7b8491;
-  --line: #e3e7ee;
-  --line-strong: #cfd6e2;
-  --primary: #2563eb;
-  --primary-dark: #174fca;
-  --primary-soft: #e8efff;
-  --secondary: #6275af;
-  --secondary-soft: #eef2fb;
-  --tertiary: #bc4800;
-  --tertiary-soft: #fff1e8;
-  --shadow: 0 16px 36px rgba(21, 25, 31, 0.12);
+  --bg: #050608;
+  --panel: rgba(13, 16, 21, 0.86);
+  --surface: rgba(255, 255, 255, 0.075);
+  --surface-hover: rgba(255, 255, 255, 0.12);
+  --ink: #f6f8fb;
+  --muted: #b9c1cc;
+  --subtle: #7e8998;
+  --line: rgba(255, 255, 255, 0.1);
+  --line-strong: rgba(255, 255, 255, 0.22);
+  --primary: #8db7ff;
+  --primary-dark: #dce8ff;
+  --primary-soft: rgba(141, 183, 255, 0.14);
+  --secondary: #d9dee7;
+  --secondary-soft: rgba(255, 255, 255, 0.08);
+  --tertiary: #ffffff;
+  --tertiary-soft: rgba(255, 255, 255, 0.09);
+  --shadow: 0 22px 48px rgba(0, 0, 0, 0.38);
   --ease: cubic-bezier(0.2, 0, 0, 1);
 }
 
@@ -30,16 +30,47 @@ html {
 }
 
 body {
+  position: relative;
   margin: 0;
   background-color: var(--bg);
   background-image:
-    linear-gradient(135deg, rgba(37, 99, 235, 0.07), rgba(37, 99, 235, 0.018) 28%, transparent 48%),
-    repeating-linear-gradient(0deg, rgba(98, 117, 175, 0.05) 0 1px, transparent 1px 36px),
-    repeating-linear-gradient(90deg, rgba(98, 117, 175, 0.045) 0 1px, transparent 1px 36px);
+    linear-gradient(135deg, rgba(255, 255, 255, 0.055), transparent 32%),
+    linear-gradient(180deg, #080a0e 0%, #050608 42%, #020305 100%);
   background-attachment: fixed;
   color: var(--ink);
   font-family: -apple-system, BlinkMacSystemFont, "Inter", "SF Pro Text", "PingFang SC", "Microsoft YaHei", sans-serif;
   line-height: 1.5;
+}
+
+body::before,
+body::after {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  content: "";
+}
+
+body::before {
+  z-index: 0;
+  background-image:
+    repeating-linear-gradient(0deg, rgba(255, 255, 255, 0.055) 0 1px, transparent 1px 42px),
+    repeating-linear-gradient(90deg, rgba(255, 255, 255, 0.05) 0 1px, transparent 1px 42px),
+    linear-gradient(120deg, transparent 0%, rgba(141, 183, 255, 0.13) 42%, transparent 56%);
+  background-position: 0 0, 0 0, -48vw 0;
+  mask-image: linear-gradient(180deg, rgba(0, 0, 0, 0.9), rgba(0, 0, 0, 0.34) 58%, transparent);
+  animation: grid-drift 18s linear infinite;
+}
+
+body::after {
+  z-index: 0;
+  background:
+    linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.11), transparent),
+    linear-gradient(180deg, transparent, rgba(141, 183, 255, 0.06), transparent);
+  background-size: 38vw 100%, 100% 34vh;
+  background-position: -44vw 0, 0 -32vh;
+  mix-blend-mode: screen;
+  opacity: 0.75;
+  animation: scan-light 12s var(--ease) infinite;
 }
 
 a {
@@ -64,6 +95,8 @@ p {
 }
 
 .app-layout {
+  position: relative;
+  z-index: 1;
   display: grid;
   grid-template-columns: 232px minmax(0, 1fr);
   min-height: 100vh;
@@ -75,10 +108,10 @@ p {
   display: flex;
   flex-direction: column;
   height: 100vh;
-  border-right: 1px solid #dce2eb;
-  background: rgba(237, 240, 245, 0.88);
-  backdrop-filter: blur(18px);
-  -webkit-backdrop-filter: blur(18px);
+  border-right: 1px solid var(--line);
+  background: rgba(5, 6, 8, 0.72);
+  backdrop-filter: blur(22px);
+  -webkit-backdrop-filter: blur(22px);
   padding: 18px 14px;
 }
 
@@ -103,7 +136,7 @@ p {
   background: #07101c;
   object-fit: cover;
   object-position: center;
-  box-shadow: 0 8px 18px rgba(37, 99, 235, 0.16);
+  box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.16), 0 10px 22px rgba(0, 0, 0, 0.38);
   transition:
     box-shadow 220ms var(--ease),
     transform 220ms var(--ease);
@@ -111,7 +144,7 @@ p {
 
 .brand:hover .logo-mark,
 .mobile-brand:hover .logo-mark {
-  box-shadow: 0 10px 22px rgba(37, 99, 235, 0.22);
+  box-shadow: 0 0 0 1px rgba(141, 183, 255, 0.36), 0 10px 24px rgba(141, 183, 255, 0.18);
   transform: translateY(-1px);
 }
 
@@ -150,7 +183,7 @@ p {
   min-height: 40px;
   width: 100%;
   border-radius: 0;
-  color: var(--secondary);
+  color: var(--subtle);
   font-size: 13px;
   font-weight: 700;
   padding: 0 14px;
@@ -170,20 +203,20 @@ p {
 }
 
 .filter-chip:hover {
-  background: rgba(255, 255, 255, 0.7);
+  background: rgba(255, 255, 255, 0.06);
   color: var(--ink);
   transform: translateX(2px);
 }
 
 .filter-chip.active {
-  background: var(--surface);
-  color: var(--primary);
-  box-shadow: 0 8px 18px rgba(37, 99, 235, 0.06);
+  background: rgba(255, 255, 255, 0.1);
+  color: var(--ink);
+  box-shadow: inset 2px 0 0 var(--primary), 0 14px 34px rgba(0, 0, 0, 0.22);
   transform: none;
 }
 
 .filter-chip.active span {
-  color: var(--tertiary);
+  color: var(--primary);
 }
 
 .app-main {
@@ -206,6 +239,7 @@ p {
 .main-header h1 {
   margin: 0;
   color: var(--ink);
+  text-shadow: 0 0 36px rgba(141, 183, 255, 0.18);
   font-size: clamp(28px, 3vw, 36px);
   font-weight: 700;
   line-height: 1.18;
@@ -230,8 +264,9 @@ p {
   justify-self: start;
   align-items: center;
   min-height: 24px;
-  background: var(--tertiary-soft);
-  color: var(--tertiary);
+  border: 1px solid var(--line);
+  background: rgba(255, 255, 255, 0.08);
+  color: var(--ink);
   font-size: 13px;
   font-weight: 700;
   padding: 2px 8px;
@@ -249,8 +284,10 @@ p {
   display: grid;
   grid-template-rows: auto 1fr auto;
   min-height: 148px;
-  border: 1px solid transparent;
+  border: 1px solid var(--line);
   background: var(--surface);
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
   overflow: hidden;
   padding: 20px;
   cursor: pointer;
@@ -268,7 +305,7 @@ p {
   position: absolute;
   inset: 0 0 auto;
   height: 2px;
-  background: linear-gradient(90deg, var(--primary), var(--secondary), transparent);
+  background: linear-gradient(90deg, transparent, var(--primary), #ffffff, transparent);
   opacity: 0;
   transform: translateX(-24px);
   transition:
@@ -291,7 +328,7 @@ p {
 .tool-row:hover {
   border-color: var(--line-strong);
   background: var(--surface-hover);
-  box-shadow: 0 12px 28px rgba(37, 99, 235, 0.08);
+  box-shadow: 0 18px 42px rgba(0, 0, 0, 0.38), 0 0 34px rgba(141, 183, 255, 0.08);
   transform: translateY(-3px);
 }
 
@@ -302,13 +339,13 @@ p {
 
 .tool-row:focus-visible,
 .mobile-tool-card:focus-visible {
-  outline: 3px solid rgba(37, 99, 235, 0.22);
+  outline: 3px solid rgba(141, 183, 255, 0.28);
   outline-offset: 2px;
 }
 
 .tool-row h3 {
   margin: 0 0 12px;
-  color: #252b34;
+  color: var(--ink);
   font-size: 17px;
   font-weight: 700;
   line-height: 1.3;
@@ -371,7 +408,7 @@ p {
 }
 
 .tool-dialog::backdrop {
-  background: rgba(21, 25, 31, 0.46);
+  background: rgba(0, 0, 0, 0.68);
   backdrop-filter: blur(6px);
   -webkit-backdrop-filter: blur(6px);
 }
@@ -381,7 +418,10 @@ p {
   max-height: min(82vh, 760px);
   overflow: auto;
   border-radius: 8px;
-  background: var(--surface);
+  border: 1px solid var(--line-strong);
+  background: rgba(9, 11, 15, 0.94);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
   padding: 30px;
   box-shadow: var(--shadow);
   animation: dialog-in 220ms var(--ease) both;
@@ -397,7 +437,7 @@ p {
   height: 34px;
   min-height: 34px;
   border-radius: 8px;
-  background: #f1f3f4;
+  background: rgba(255, 255, 255, 0.08);
   color: var(--muted);
   font-size: 22px;
   line-height: 1;
@@ -408,7 +448,7 @@ p {
 }
 
 .dialog-close:hover {
-  background: #e7ebf2;
+  background: rgba(255, 255, 255, 0.14);
   color: var(--ink);
   transform: scale(1.03);
 }
@@ -446,7 +486,7 @@ p {
 
 .dialog-section h3 {
   margin: 0 0 8px;
-  color: #252b34;
+  color: var(--ink);
   font-size: 15px;
   font-weight: 700;
 }
@@ -471,8 +511,8 @@ p {
   place-items: center;
   min-height: 38px;
   border-radius: 6px;
-  background: var(--primary);
-  color: #fff;
+  background: #f6f8fb;
+  color: #050608;
   font-size: 14px;
   font-weight: 700;
   padding: 0 18px;
@@ -483,8 +523,8 @@ p {
 }
 
 .primary-link:hover {
-  background: var(--primary-dark);
-  box-shadow: 0 8px 18px rgba(37, 99, 235, 0.22);
+  background: #ffffff;
+  box-shadow: 0 10px 24px rgba(141, 183, 255, 0.2);
   transform: translateY(-1px);
 }
 
@@ -557,9 +597,8 @@ p {
   body {
     background-color: var(--bg);
     background-image:
-      linear-gradient(135deg, rgba(37, 99, 235, 0.06), transparent 46%),
-      repeating-linear-gradient(0deg, rgba(98, 117, 175, 0.045) 0 1px, transparent 1px 32px),
-      repeating-linear-gradient(90deg, rgba(98, 117, 175, 0.04) 0 1px, transparent 1px 32px);
+      linear-gradient(135deg, rgba(255, 255, 255, 0.048), transparent 46%),
+      linear-gradient(180deg, #080a0e 0%, #050608 52%, #020305 100%);
   }
 
   .app-layout {
@@ -645,15 +684,16 @@ p {
 
   .mobile-group-head h2 {
     margin: 0;
-    color: #252b34;
+    color: var(--ink);
     font-size: 18px;
     font-weight: 700;
     line-height: 1.3;
   }
 
   .mobile-group-head span {
-    background: var(--tertiary-soft);
-    color: var(--tertiary);
+    border: 1px solid var(--line);
+    background: rgba(255, 255, 255, 0.08);
+    color: var(--ink);
     font-size: 12px;
     font-weight: 700;
     padding: 1px 7px;
@@ -668,8 +708,10 @@ p {
   .mobile-tool-card {
     position: relative;
     min-height: 108px;
-    border: 1px solid transparent;
+    border: 1px solid var(--line);
     background: var(--surface);
+    backdrop-filter: blur(18px);
+    -webkit-backdrop-filter: blur(18px);
     overflow: hidden;
     padding: 13px 28px 12px 12px;
     cursor: pointer;
@@ -692,7 +734,7 @@ p {
 
   .mobile-tool-card h3 {
     margin: 0 0 7px;
-    color: #252b34;
+    color: var(--ink);
     font-size: 14px;
     font-weight: 700;
     line-height: 1.35;
@@ -721,8 +763,8 @@ p {
   }
 
   .mobile-tool-card:active {
-    border-color: rgba(37, 99, 235, 0.28);
-    background: #fbfdff;
+    border-color: var(--line-strong);
+    background: var(--surface-hover);
     transform: scale(0.99);
   }
 
@@ -766,7 +808,7 @@ p {
   }
 
   .tool-row:hover {
-    border-color: transparent;
+    border-color: var(--line);
     background: var(--surface);
     box-shadow: none;
     transform: none;
@@ -792,6 +834,27 @@ p {
     animation-duration: 1ms !important;
     scroll-behavior: auto !important;
     transition-duration: 1ms !important;
+  }
+}
+
+@keyframes grid-drift {
+  from {
+    background-position: 0 0, 0 0, -48vw 0;
+  }
+  to {
+    background-position: 42px 42px, 42px 42px, 48vw 0;
+  }
+}
+
+@keyframes scan-light {
+  0% {
+    background-position: -44vw 0, 0 -32vh;
+  }
+  48% {
+    background-position: 106vw 0, 0 118vh;
+  }
+  100% {
+    background-position: 106vw 0, 0 118vh;
   }
 }
 
