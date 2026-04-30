@@ -27,22 +27,22 @@ const tools = [
   { name: "绿建管家", category: ["outbound"], url: "", icon: "./assets/icons/lvjianguanjia.png", access: "请用手机下载 APP，搜索“绿建管家”。" },
   { name: "客源星球", category: ["growth"], url: "", icon: "./assets/icons/keyuanxingqiu.jpg", access: "请用手机下载 APP，搜索“客源星球”。" },
   { name: "装企客源引擎", category: ["growth"], url: "", icon: "./assets/icons/zhuangqikeyuanyinqing.png", access: "请用手机下载 APP，搜索“装企客源引擎”。" },
-  { name: "开拍", category: ["growth"], url: "https://www.kaipai.com/" },
-  { name: "剪映", category: ["growth"], url: "https://www.capcut.cn/" },
-  { name: "说得AI", category: ["growth"], url: "https://www.shuodeai.com/" },
-  { name: "即梦 AI", category: ["growth"], url: "https://jimeng.jianying.com/" },
-  { name: "来鼓AI", category: ["service"], url: "https://laigu.com/" },
-  { name: "米多客", category: ["service"], url: "https://www.miduoke.net/" },
-  { name: "美洽", category: ["service"], url: "https://www.meiqia.com/" },
-  { name: "3Chat.ai", category: ["service"], url: "https://www.3chat.ai/" },
-  { name: "晓多智能客服", category: ["service"], url: "https://www.xiaoduoai.com/" },
+  { name: "开拍", category: ["growth"], url: "https://www.kaipai.com/", icon: "./assets/icons/kaipai.ico" },
+  { name: "剪映", category: ["growth"], url: "https://www.capcut.cn/", icon: "./assets/icons/jianying.ico" },
+  { name: "说得AI", category: ["growth"], url: "https://www.shuodeai.com/", icon: "./assets/icons/shuodeai.ico" },
+  { name: "即梦 AI", category: ["growth"], url: "https://jimeng.jianying.com/", icon: "./assets/icons/jimeng.ico" },
+  { name: "来鼓AI", category: ["service"], url: "https://laigu.com/", icon: "./assets/icons/laigu.ico" },
+  { name: "米多客", category: ["service"], url: "https://www.miduoke.net/", icon: "./assets/icons/miduoke.ico" },
+  { name: "美洽", category: ["service"], url: "https://www.meiqia.com/", icon: "./assets/icons/meiqia.ico" },
+  { name: "3Chat.ai", category: ["service"], url: "https://www.3chat.ai/", icon: "./assets/icons/3chat.png" },
+  { name: "晓多智能客服", category: ["service"], url: "https://www.xiaoduoai.com/", icon: "./assets/icons/xiaoduo.ico" },
   { name: "快商通 AI 私信留资机器人", category: ["service"], url: "https://www.kuaishang.cn/", icon: "./assets/icons/kuaishangtong.png" },
-  { name: "图销AI", category: ["service", "design"], url: "https://tuxiao.cc/" },
+  { name: "图销AI", category: ["service", "design"], url: "https://tuxiao.cc/", icon: "./assets/icons/tuxiao.jpg" },
   { name: "酷家乐 AI", category: ["design"], url: "https://www.kujiale.com/hc/article/3FO4K4WPVV8V", icon: "./assets/icons/kujiale.png" },
-  { name: "三维家", category: ["design"], url: "https://www.3vjia.com/" },
-  { name: "AI室内大师", category: ["design"], url: "https://www.ai-houses.com/" },
-  { name: "建筑学长", category: ["design"], url: "https://www.jianzhuxuezhang.com/" },
-  { name: "美间", category: ["design"], url: "https://www.meijian.com/" }
+  { name: "三维家", category: ["design"], url: "https://www.3vjia.com/", icon: "./assets/icons/3vjia.ico" },
+  { name: "AI室内大师", category: ["design"], url: "https://www.ai-houses.com/", icon: "./assets/icons/aihouses.jpeg" },
+  { name: "建筑学长", category: ["design"], url: "https://www.jianzhuxuezhang.com/", icon: "./assets/icons/jianzhuxuezhang.ico" },
+  { name: "美间", category: ["design"], url: "https://www.meijian.com/", icon: "./assets/icons/meijian.png" }
 ];
 
 const categoryOrder = {
@@ -84,11 +84,6 @@ function toolsForCategory(categoryId) {
 function iconUrl(tool) {
   if (tool.icon) {
     return tool.icon;
-  }
-
-  if (tool.url) {
-    const domain = new URL(tool.url).origin;
-    return `https://www.google.com/s2/favicons?sz=128&domain_url=${encodeURIComponent(domain)}`;
   }
 
   return "";
