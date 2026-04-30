@@ -3,61 +3,48 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>装修商家 AI 选型指南</title>
+    <title>为建材经销商打造的智能化工作流解决方案</title>
     <meta
       name="description"
-      content="面向建材、装修、家居、装企老板的 AI 工具导航，按获客、语音纪要、视频获客、家装设计和智能客服整理。"
+      content="为建材经销商打造的智能化工作流解决方案，覆盖 AI 外呼、AI 获客、AI 客服、AI 设计四大场景。"
     >
     <link rel="icon" href="./assets/favicon.svg" type="image/svg+xml">
     <link rel="stylesheet" href="./styles.css">
   </head>
   <body>
-    <div class="app-layout">
-      <aside class="app-sidebar" aria-label="侧边栏">
-        <div class="sidebar-header">
-          <a class="brand" href="#top" aria-label="装修工具库首页">
-            <img class="logo-mark" src="./logo.jpg" alt="" aria-hidden="true">
-            <div class="brand-text">
-              <strong>圆隆科技</strong>
-              <small>装修 AI 工具库</small>
-            </div>
-          </a>
-        </div>
-        <div id="scenarios" class="sidebar-nav" aria-label="场景筛选">
-          <div id="categoryFilters" class="filter-list"></div>
-        </div>
-      </aside>
+    <div class="app-shell">
+      <header class="topbar">
+        <a class="brand-mark" href="#top" aria-label="圆隆科技">
+          <img class="brand-logo" src="./logo.jpg" alt="">
+        </a>
+      </header>
 
-      <main id="top" class="app-main">
-        <div class="main-header">
-          <div class="mobile-brand" aria-label="圆隆科技">
-            <img class="logo-mark" src="./logo.jpg" alt="" aria-hidden="true">
-            <span>圆隆科技</span>
-          </div>
-          <h1 id="tools-title">装修 AI 工具库</h1>
-          <p class="main-subtitle">按经营场景整理，方便老板快速找到能直接试用的工具。</p>
-        </div>
+      <main id="top" class="page">
+        <section class="hero">
+          <p class="hero-brand">圆隆科技</p>
+          <h1>为建材经销商打造的智能化工作流解决方案</h1>
+        </section>
 
-        <div class="results-panel">
-          <div id="resultSummary" class="result-summary" aria-live="polite"></div>
-          <div id="toolGrid" class="tool-grid"></div>
-          <div id="mobileGroups" class="mobile-groups"></div>
-        </div>
-
-        <footer class="site-footer">
-          <div>
-            <strong>圆隆科技</strong>
-            <span>为建材、装修、家居商家整理可落地的 AI 工具。</span>
-          </div>
-          <p>© 2026 圆隆科技 版权所有</p>
-        </footer>
+        <section id="categoryView" class="category-view" aria-label="分类入口">
+          <div id="categoryGrid" class="category-grid"></div>
+        </section>
       </main>
     </div>
 
-    <dialog id="toolDialog" class="tool-dialog" aria-labelledby="dialogTitle">
-      <div class="dialog-body">
+    <dialog id="categoryDialog" class="category-dialog" aria-labelledby="categoryDialogTitle">
+      <div class="dialog-panel category-dialog-panel">
+        <button id="closeCategoryDialog" class="dialog-close" type="button" aria-label="关闭">×</button>
+        <h2 id="categoryDialogTitle" class="sr-only"></h2>
+        <div id="toolGrid" class="tool-grid tool-grid-dialog"></div>
+      </div>
+    </dialog>
+
+    <dialog id="appDialog" class="app-dialog" aria-labelledby="appDialogTitle">
+      <div class="dialog-panel">
         <button id="closeDialog" class="dialog-close" type="button" aria-label="关闭">×</button>
-        <div id="dialogContent"></div>
+        <p class="detail-eyebrow" id="appDialogTitle">移动端使用</p>
+        <h3 id="appName"></h3>
+        <p id="appDescription" class="detail-description"></p>
       </div>
     </dialog>
 
