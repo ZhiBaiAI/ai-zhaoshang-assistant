@@ -1,5 +1,7 @@
 import { WorkerApiClient } from './apiClient';
 import { WorkerConfig } from './config';
+import type { DingTalkA1PollResult } from './dingtalkA1';
+import { pollDingTalkA1 } from './dingtalkA1';
 
 export interface WorkerRunResult {
   pending: number;
@@ -77,10 +79,10 @@ export async function runWorkerOnce(
 }
 
 export async function runWorkerMaintenance(
-  config: Pick<WorkerConfig, 'projectId' | 'feishuSyncEnabled' | 'reviewReportsEnabled'>,
+  config: Pick<WorkerConfig, 'projectId' | 'feishuSyncEnabled' | 'reviewReportsEnabled' | 'dingtalkA1Sync'>,
   client: WorkerApiClient,
   logger: WorkerLogger = console,
-): Promise<{ feishuUpdated: number }> {
+): Promise<{ feishuUpdated: number; dingtalkA1: DingTalkA1PollResult }> {
   let feishuUpdated = 0;
   if (config.feishuSyncEnabled) {
     const result = await client.syncFeishuLeadStatus(config.projectId);
@@ -92,7 +94,13 @@ export async function runWorkerMaintenance(
     await client.generateReviewReport({ projectId: config.projectId, period: 'monthly' });
     logger.info('Generated review daily and monthly reports.');
   }
-  return { feishuUpdated };
+  const dingtalkA1 = await pollDingTalkA1(config.dingtalkA1Sync, undefined, logger);
+  if (config.dingtalkA1Sync.enabled) {
+    logger.info(
+      `Synced DingTalk A1 audio: listed=${dingtalkA1.listed}, saved=${dingtalkA1.saved}, created=${dingtalkA1.created}, updated=${dingtalkA1.updated}, audioDownloaded=${dingtalkA1.audioDownloaded}, failed=${dingtalkA1.failed}.`,
+    );
+  }
+  return { feishuUpdated, dingtalkA1 };
 }
 
 export async function runWorkerLoop(
@@ -113,7 +121,9 @@ export async function runWorkerLoop(
 
   try {
     do {
-      await runWorkerOnce(config, client, logger);
+      if (config.apiTasksEnabled) {
+        await runWorkerOnce(config, client, logger);
+      }
       await runWorkerMaintenance(config, client, logger).catch(error => {
         logger.error(`Worker maintenance failed: ${String(error)}`);
       });

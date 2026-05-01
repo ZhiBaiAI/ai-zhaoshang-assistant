@@ -1,7 +1,22 @@
 import assert from 'node:assert/strict';
 import test from 'node:test';
+import type { DingTalkA1SyncConfig } from './config';
 import { WorkerApiClient } from './apiClient';
 import { runWorkerMaintenance, runWorkerOnce } from './worker';
+
+const disabledDingTalkA1Sync: DingTalkA1SyncConfig = {
+  enabled: false,
+  baseUrl: 'https://api.dingtalk.com',
+  accessToken: undefined,
+  appKey: undefined,
+  appSecret: undefined,
+  snList: [],
+  deviceType: 'A1',
+  lookbackMs: 86400000,
+  maxResults: 20,
+  dataDir: 'data/dingtalk-a1',
+  downloadAudio: false,
+};
 
 test('runWorkerOnce generates each pending task', async () => {
   const generated: string[] = [];
@@ -65,10 +80,25 @@ test('runWorkerMaintenance syncs Feishu lead status when enabled', async () => {
   } as unknown as WorkerApiClient;
 
   const result = await runWorkerMaintenance(
-    { projectId: 'project-1', feishuSyncEnabled: true, reviewReportsEnabled: true },
+    {
+      projectId: 'project-1',
+      feishuSyncEnabled: true,
+      reviewReportsEnabled: true,
+      dingtalkA1Sync: disabledDingTalkA1Sync,
+    },
     client,
     { info() {}, warn() {}, error() {} },
   );
 
-  assert.deepEqual(result, { feishuUpdated: 1 });
+  assert.deepEqual(result, {
+    feishuUpdated: 1,
+    dingtalkA1: {
+      listed: 0,
+      saved: 0,
+      created: 0,
+      updated: 0,
+      audioDownloaded: 0,
+      failed: 0,
+    },
+  });
 });

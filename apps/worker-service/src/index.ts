@@ -3,7 +3,9 @@ import { runWorkerLoop } from './worker';
 
 async function main(): Promise<void> {
   const config = loadWorkerConfig();
-  console.log(`worker-service started for project ${config.projectId}`);
+  console.log(config.projectId
+    ? `worker-service started for project ${config.projectId}`
+    : 'worker-service started');
   console.log(`api-service: ${config.apiBaseUrl}`);
   await runWorkerLoop(config);
 }

@@ -33,8 +33,10 @@ const tools = [
   { name: "即梦 AI", category: ["growth"], url: "https://jimeng.jianying.com/", icon: "./assets/icons/jimeng.ico" },
   { name: "来鼓AI", category: ["service"], url: "https://laigu.com/", icon: "./assets/icons/laigu.ico" },
   { name: "米多客", category: ["service"], url: "https://www.miduoke.net/", icon: "./assets/icons/miduoke.ico" },
+  { name: "讯飞听见", category: ["service"], url: "https://www.iflyrec.com/", icon: "./assets/icons/iflyrec.ico" },
+  { name: "GET笔记", category: ["service"], url: "", icon: "./assets/icons/getnote.png", access: "请用手机下载 APP，搜索“GET笔记”。" },
   { name: "美洽", category: ["service"], url: "https://www.meiqia.com/", icon: "./assets/icons/meiqia.ico" },
-  { name: "3Chat.ai", category: ["service"], url: "https://www.3chat.ai/", icon: "./assets/icons/3chat.png" },
+  { name: "3Chat.ai", category: ["service"], url: "https://3chatai.cn/", icon: "./assets/icons/3chat.png" },
   { name: "晓多智能客服", category: ["service"], url: "https://www.xiaoduoai.com/", icon: "./assets/icons/xiaoduo.ico" },
   { name: "快商通 AI 私信留资机器人", category: ["service"], url: "https://www.kuaishang.cn/", icon: "./assets/icons/kuaishangtong.png" },
   { name: "图销AI", category: ["service", "design"], url: "https://tuxiao.cc/", icon: "./assets/icons/tuxiao.jpg" },
@@ -48,7 +50,7 @@ const tools = [
 const categoryOrder = {
   outbound: ["云蝠智能", "语聚AI", "绿建管家"],
   growth: ["客源星球", "装企客源引擎", "开拍", "剪映", "说得AI", "即梦 AI"],
-  service: ["来鼓AI", "米多客", "美洽", "3Chat.ai", "晓多智能客服", "快商通 AI 私信留资机器人", "语聚AI", "图销AI"],
+  service: ["来鼓AI", "米多客", "讯飞听见", "GET笔记", "美洽", "3Chat.ai", "晓多智能客服", "快商通 AI 私信留资机器人", "语聚AI", "图销AI"],
   design: ["酷家乐 AI", "三维家", "AI室内大师", "建筑学长", "图销AI", "美间"]
 };
 
